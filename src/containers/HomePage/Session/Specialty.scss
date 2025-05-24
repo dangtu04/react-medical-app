@@ -1,0 +1,76 @@
+.specialty-container {
+  position: relative;
+  padding: 20px 100px;
+  height: 380px;
+
+  .specialty-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .specialty-title {
+      font-weight: 600;
+    }
+
+    .more {
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 500;
+      color: #34929e;
+      background-color: #daf3f6;
+      padding: 5px 10px;
+      border-radius: 16px;
+      &.more:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+
+  .specialty-content {
+    padding: 20px 0;
+    justify-content: space-around;
+    .slide-item {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      .slide-inner {
+        border: 1px solid #d2cdcd;
+        border-radius: 20px;
+        margin: 0 30px;
+        padding: 20px 10px 30px 10px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        text-decoration: none;
+
+        img {
+          width: 270px;
+          height: 180px;
+            border-radius: 10px;
+        }
+        span {
+          padding-top: 20px;
+          font-weight: 700;
+          font-size: 20px;
+          color: black;
+        }
+      }
+    }
+  }
+
+  /* Customize slick arrows */
+  .slick-prev,
+  .slick-next {
+    top: 45% !important;
+    width: 30px;
+    height: 30px;
+  }
+
+  .slick-prev:before,
+  .slick-next:before {
+    color: #34929e;
+    font-size: 40px;
+  }
+}

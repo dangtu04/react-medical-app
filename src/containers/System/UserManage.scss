@@ -1,0 +1,82 @@
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td,
+#customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#customers tr:hover {
+  background-color: #ddd;
+}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #0071ba;
+  color: white;
+}
+.btn-actions {
+  margin-right: 20%;
+  margin-left: 5%;
+}
+.no-outline {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.modal-add-user {
+  .modal-header {
+    .close {
+      color: white;
+      background-color: transparent;
+      border:none;
+      font-size: 30px;
+    }
+  }
+  .modal-body {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 20px;
+    padding: 10px 20px;
+
+    .input-container {
+      width: 48%; 
+      display: flex;
+      flex-direction: column;
+
+      label {
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+
+      .input {
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        height: 35px;
+        padding: 0 10px;
+        outline: none;
+        font-size: 14px;
+      }
+    }
+    .input-container:nth-child(5) {
+      width: 31%;
+    } .input-container:nth-child(6) {
+      width: 31%;
+    } .input-container:nth-child(7) {
+      width: 31%;
+    }
+    .input-container:nth-child(8) {
+      width: 100%;
+    }
+  }
+}

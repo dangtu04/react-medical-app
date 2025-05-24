@@ -1,0 +1,35 @@
+.schedule-manage-container {
+  padding: 20px 100px;
+  .s-m-title {
+    font-size: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #0071ba;
+    font-weight: 600;
+  }
+
+  .schedule-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 10px 0;
+
+        .time-slot {
+          background-color: #f0f0f0;
+          padding: 10px;
+          text-align: center;
+          border-radius: 5px;
+          cursor: pointer;
+          border: none;
+          &.active{
+            background-color: #0092db;
+            color: white;
+          }
+        }
+
+        .time-slot:hover {
+          // background-color: #d8f8fd;
+          color: rgb(109, 109, 109);
+        }
+      }
+}

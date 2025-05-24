@@ -1,0 +1,36 @@
+.login-background {
+  background: linear-gradient(135deg, rgb(10, 189, 234), rgb(212, 234, 225));
+  height: 100vh;
+  .login-container {
+    width: 400px;
+    height: 100%;
+    margin: auto;
+    // border: 1px solid red;
+    background-color: white;
+    border-radius: 10px;
+
+    .login-content {
+      padding: 20px;
+
+      .input-login {
+        margin-bottom: 7px;;
+        padding:4px 10px;
+        
+      }
+
+      .btn-login {
+        border-radius: 10px;
+        width: 100%;
+        padding: 7px 0px;
+        background: linear-gradient(
+          135deg,
+          rgb(10, 189, 234), rgb(212, 234, 225)
+        );
+        color: white;
+        border: none;
+        font-weight: 600;
+        margin-top: 16px;
+      }
+    }
+  }
+}

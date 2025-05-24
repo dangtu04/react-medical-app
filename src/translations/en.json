@@ -1,0 +1,65 @@
+{
+    "header": {
+    "all": "All",
+    "at-the-hospital": "At the Hospital",
+    "live-healthy": "Live Healthy",
+    "search": "Search",
+    "appointment": "Appointment"
+    },
+    "specialty": {
+        "specialty": "Specialty",
+        "more": "More"
+    },
+     "clinic": {
+        "clinic": "Clinic"
+    },
+
+    "featured-doctor": "Featured Doctor",
+
+    "menu": {
+        "admin": {
+            "user": "User",
+            "user-manage-v1": "User Management v1",
+            "user-manage-v2": "User Management v2",
+            "doctor-introduce": "Doctor's Introduction",
+            "clinic": "Clinic",
+            "clinic-manage": "Clinic Management",
+            "specialty": "Specialty",
+            "specialty-manage": "Specialty Management",
+            "handbook": "Handbook",
+            "handbook-manage": "Handbook Management",
+            "doctor-schedule": "Doctor Schedule Management" 
+        },
+        "welcome":"Welcome",
+        "doctor": {
+            "doctor": "Doctor",
+            "schedule": "Schedule"
+        }
+    },
+    "user-manage": {
+        "form": {
+            "user-manage-title": "User Manage",
+            "first-name": "First Name",
+            "last-name": "Last Name",
+            "email": "Email",
+            "phone-number": "Phone Number",
+            "gender": "Gender",
+            "date-of-birth": "Date Of Birth",
+            "image": "Image",
+            "position-id": "Position Id",
+            "password": "Password",
+            "role": "Role",
+            "address": "Address",
+            "upload": "Upload Image",
+            "create": "Add new user",
+            "update": "Update"
+        }
+    },
+     "schedule-manage" : {
+        "title": "Manage medical appointment schedule",
+        "choose-doctor": "Choose doctor",
+        "choose-date": "Choose date",
+        "save": "Save schedule"
+    }
+
+}

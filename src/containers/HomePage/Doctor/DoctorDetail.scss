@@ -1,0 +1,200 @@
+.doctor-detail {
+  // padding: 20px;
+  font-family: Arial, sans-serif;
+  padding: 20px 100px;
+  .doctor-info {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+
+    .doctor-photo img {
+      width: 120px;
+      height: 120px;
+      border-radius: 60px;
+      margin-right: 20px;
+    }
+
+    .doctor-description {
+      flex: 1;
+
+      .favorite-badge {
+        background-color: #ffc311;
+        display: inline-block;
+        padding: 2px 8px;
+        font-weight: bold;
+        border-radius: 15px;
+        margin-bottom: 5px;
+        color: white;
+        i {
+          margin-right: 5px;
+        }
+      }
+
+      h1 {
+        margin: 5px 0;
+      }
+
+      .share-button {
+        margin-top: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .doctor-main {
+    display: flex;
+    margin-top: 20px;
+
+    .schedule {
+      flex: 2;
+      margin-right: 20px;
+
+      .schedule-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin: 10px 0;
+
+        .time-slot {
+          background-color: #f0f0f0;
+          padding: 10px;
+          text-align: center;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+      }
+
+      .note {
+        font-size: 0.9em;
+        color: #666;
+      }
+    }
+
+    .clinic-info {
+      flex: 1;
+      background-color: #f9f9f9;
+      padding: 15px;
+      border-radius: 8px;
+
+      .clinic-name {
+        color: #007bff;
+        font-weight: bold;
+      }
+
+      a {
+        color: #007bff;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .doctor-bio {
+    margin-top: 30px;
+    border-top: 1px solid #ccc;
+    padding-top: 16px;
+    h3 {
+      margin-bottom: 10px;
+    }
+
+    ul {
+      padding-left: 20px;
+      list-style: disc;
+
+      li {
+        margin-bottom: 5px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .doctor-detail {
+    padding: 20px 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .doctor-detail {
+    padding: 20px;
+
+    .doctor-info {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+
+      .doctor-photo {
+        margin-bottom: 15px;
+      }
+
+      .doctor-photo img {
+        width: 100px;
+        height: 100px;
+      }
+
+      .doctor-description {
+        .share-button {
+          width: 100%;
+        }
+      }
+    }
+
+    .doctor-main {
+      flex-direction: column;
+
+      .schedule {
+        margin-right: 0;
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .doctor-detail {
+    padding: 15px;
+
+    .doctor-info {
+      .doctor-photo img {
+        width: 80px;
+        height: 80px;
+      }
+
+      .doctor-description {
+        h1 {
+          font-size: 1.2em;
+        }
+
+        p {
+          font-size: 0.9em;
+        }
+
+        .favorite-badge {
+          font-size: 0.8em;
+        }
+      }
+    }
+
+    .doctor-main {
+      .schedule {
+        .schedule-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+    }
+
+    .doctor-bio {
+      h3 {
+        font-size: 1.1em;
+      }
+
+      ul li {
+        font-size: 0.9em;
+      }
+    }
+  }
+}
