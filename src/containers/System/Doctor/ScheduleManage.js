@@ -96,8 +96,7 @@ class ScheduleManage extends Component {
       return;
     }
     // let formattedDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER);
-    let formattedDate = new Date(currentDate).getTime();
-
+    let formattedDate = new Date(currentDate).getTime().toString();
     if (timeList && timeList.length > 0) {
       let selectedTime = timeList.filter((item) => item.isSelected === true);
       if (selectedTime && selectedTime.length > 0) {
@@ -123,8 +122,6 @@ class ScheduleManage extends Component {
     } else {
       toast.error(res.errMessage);
     }
-    console.log("check response: ", res);
-    // console.log("check result: ", result);
   };
 
   render() {

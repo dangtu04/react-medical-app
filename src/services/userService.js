@@ -47,6 +47,21 @@ const getMarkdownByDoctorId = (doctorId) => {
 const saveBulkDoctorSchedule = (data) => {
   return axios.post("/api/bulk-create-schedule", data);
 };
+
+
+const getDoctorSchedule = (doctorId, date) => {
+  return axios.get(`/api/get-doctor-schedule?doctorId=${doctorId}&date=${date}`);
+};
+
+const getDoctorInforExtra = (doctorId) => {
+  return axios.get(`/api/get-doctor-infor-extra?doctorId=${doctorId}`);
+};
+
+const getProfileDoctor = (doctorId) => {
+  return axios.get(`/api/get-profile-doctor?doctorId=${doctorId}`);
+};
+
+
 export {
   userLogin,
   getAllUsers,
@@ -59,4 +74,7 @@ export {
   getDoctorDetail,
   getMarkdownByDoctorId,
   saveBulkDoctorSchedule,
+  getDoctorSchedule,
+  getDoctorInforExtra,
+  getProfileDoctor
 };

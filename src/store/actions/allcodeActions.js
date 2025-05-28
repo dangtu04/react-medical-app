@@ -80,8 +80,6 @@ export const fetchRoleFailed = () => ({
   type: actionTypes.FETCH_ROLE_FAILED,
 });
 
-
-
 // Time
 export const fetchScheduleTime = () => {
   return async (dispatch, getState) => {
@@ -106,7 +104,6 @@ export const fetchScheduleTime = () => {
   };
 };
 
-
 // save bulk schedule
 export const saveBulkDoctorScheduleRedux = (data) => {
   return async (dispatch) => {
@@ -121,6 +118,46 @@ export const saveBulkDoctorScheduleRedux = (data) => {
     } catch (error) {
       dispatch({ type: actionTypes.SAVE_BULK_SCHEDULE_FAILED });
       return null;
+    }
+  };
+};
+
+export const getRequiredDoctorInfor = () => {
+  return async (dispatch, getstate) => {
+    try {
+      // dispatch({ type: actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_START })
+
+      let resPrice = await getAllCode("PRICE");
+      let resPayment = await getAllCode("PAYMENT");
+      let resProvince = await getAllCode("PROVINCE");
+
+      if (
+        resPrice &&
+        resPrice.errCode === 0 &&
+        resPayment &&
+        resPayment.errCode === 0 &&
+        resProvince &&
+        resProvince.errCode === 0
+      ) {
+        let data = {
+          resPrice: resPrice.data,
+          resPayment: resPayment.data,
+          resProvince: resProvince.data,
+        };
+        dispatch({
+          type: actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_SUCCESS,
+          data: data,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_FAILED,
+        });
+      }
+    } catch (e) {
+      dispatch({
+        type: actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_FAILED,
+      });
+      console.log("FETCH_REQUIRED_DOCTOR_INFOR_FAILED", e);
     }
   };
 };

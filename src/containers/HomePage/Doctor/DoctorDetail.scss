@@ -49,48 +49,14 @@
   .doctor-main {
     display: flex;
     margin-top: 20px;
-
-    .schedule {
-      flex: 2;
-      margin-right: 20px;
-
-      .schedule-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-        margin: 10px 0;
-
-        .time-slot {
-          background-color: #f0f0f0;
-          padding: 10px;
-          text-align: center;
-          border-radius: 5px;
-          cursor: pointer;
-        }
-      }
-
-      .note {
-        font-size: 0.9em;
-        color: #666;
-      }
+    .schedule{
+      flex:5;
     }
-
-    .clinic-info {
-      flex: 1;
-      background-color: #f9f9f9;
-      padding: 15px;
-      border-radius: 8px;
-
-      .clinic-name {
-        color: #007bff;
-        font-weight: bold;
-      }
-
-      a {
-        color: #007bff;
-        text-decoration: none;
-      }
+    .extra-infor{
+      flex:2;
     }
+ 
+
   }
 
   .doctor-bio {

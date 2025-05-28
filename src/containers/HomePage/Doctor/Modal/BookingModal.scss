@@ -1,0 +1,140 @@
+.bk-md-container {
+  .modal-content {
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .bk-md-content {
+    .bk-md-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+      border-bottom: 1px solid #e9ecef;
+      background-color: #f8f9fa;
+      border-radius: 8px 8px 0 0;
+
+      .left {
+        font-size: 18px;
+        font-weight: 600;
+        color: #333;
+      }
+
+      .right {
+        cursor: pointer;
+        font-size: 20px;
+        color: #666;
+        box-sizing: border-box;
+
+        &:hover {
+          color: #333;
+        }
+      }
+    }
+
+    .bk-md-body {
+      padding: 20px;
+
+      .doctor-infor {
+        margin-bottom: 20px;
+
+       
+      }
+
+      .row {
+        margin: 0 -8px;
+
+        .col-6,
+        .col-12 {
+          padding: 0 8px;
+          margin-bottom: 16px;
+
+          label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: #333;
+            font-size: 14px;
+          }
+
+          .form-control {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: border-color 0.15s ease-in-out,
+              box-shadow 0.15s ease-in-out;
+
+            &:focus {
+              outline: none;
+              border-color: #007bff;
+              box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+            }
+
+            &::placeholder {
+              color: #999;
+            }
+          }
+        }
+      }
+    }
+
+    .bk-md-footer {
+      padding: 16px 20px;
+      border-top: 1px solid #e9ecef;
+      background-color: #f8f9fa;
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      border-radius: 0 0 8px 8px;
+
+      .btn-booking-confirm {
+        background-color: #00c2ed;
+        color: #ffffff;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.15s ease-in-out;
+
+        &:hover {
+          background-color: #e0a800;
+        }
+      }
+
+      .btn-booking-cancel {
+        background-color: #6c757d;
+        color: white;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.15s ease-in-out;
+
+        &:hover {
+          background-color: #5a6268;
+        }
+      }
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .bk-md-container {
+    .bk-md-content {
+      .bk-md-body {
+        .row {
+          .col-6 {
+            width: 100%;
+            margin-bottom: 12px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -6,7 +6,10 @@ import {
   getAllDoctors,
   getAllUsers,
   getDoctorDetail,
+  getDoctorInforExtra,
+  getDoctorSchedule,
   getMarkdownByDoctorId,
+  getProfileDoctor,
   getTopDoctor,
 } from "../../services/userService";
 import actionTypes from "./actionTypes";
@@ -246,6 +249,82 @@ export const fetchMarkdownByDoctorId = (doctorId) => {
       console.log("FETCH_MARKDOWN_BY_DOCTOR_FAILED: ", error);
       dispatch({
         type: actionTypes.FETCH_MARKDOWN_BY_DOCTOR_FAILED,
+      });
+    }
+  };
+};
+
+// fetch doctor schedule
+export const fetchDoctorSchedule = (doctorId, date) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getDoctorSchedule(doctorId, date);
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_DOCTOR_SCHEDULE_SUCCESS,
+          doctorSchedule: res.data,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_DOCTOR_SCHEDULE_FAILED,
+        });
+      }
+      return res;
+    } catch (error) {
+      console.log("FETCH_DOCTOR_SCHEDULE_FAILED: ", error);
+      dispatch({
+        type: actionTypes.FETCH_DOCTOR_SCHEDULE_FAILED,
+      });
+    }
+  };
+};
+
+
+// fetch doctor infor extra
+export const fetchDoctorInforExtra = (doctorId) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getDoctorInforExtra(doctorId);
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_DOCTOR_INFOR_EXTRA_SUCCESS,
+          doctorExtraInfor: res.data,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_DOCTOR_INFOR_EXTRA_FAILED,
+        });
+      }
+    } catch (error) {
+      console.log("FETCH_DOCTOR_INFOR_EXTRA_FAILED: ", error);
+      dispatch({
+        type: actionTypes.FETCH_DOCTOR_INFOR_EXTRA_FAILED,
+      });
+    }
+  };
+};
+
+
+// fetch profile doctor
+// fetch doctor infor extra
+export const fetchProfileDoctor = (doctorId) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getProfileDoctor(doctorId);
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_PROFILE_DOCTOR_SUCCESS,
+          profileDoctor: res.data,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_PROFILE_DOCTOR_FAILED,
+        });
+      }
+    } catch (error) {
+      console.log("FETCH_PROFILE_DOCTOR_FAILED: ", error);
+      dispatch({
+        type: actionTypes.FETCH_PROFILE_DOCTOR_FAILED,
       });
     }
   };

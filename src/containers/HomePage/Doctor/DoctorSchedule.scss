@@ -1,0 +1,46 @@
+.schedule {
+  flex: 2;
+  margin-right: 20px;
+  .select-date {
+    margin-bottom: 10px;
+    select {
+      border: none;
+      color: #4787be;
+      font-size: 16px;
+      font-weight: 600;
+      outline: none;
+      appearance: none;
+      text-transform: capitalize;
+      padding: 0 10px 8px 10px;
+      margin-left: -10px;
+    }
+    i {
+      color: #4787be;
+    }
+  }
+  .schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 10px 0;
+
+    .time-slot {
+      background-color: #f0f0f0;
+      padding: 10px;
+      text-align: center;
+      border-radius: 5px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      &:hover {
+        border: 2px solid #33b0e3;
+        background-color: #e8f7fd;
+        color: #33b0e3;
+      }
+    }
+  }
+
+  .note {
+    font-size: 0.9em;
+    color: #666;
+  }
+}

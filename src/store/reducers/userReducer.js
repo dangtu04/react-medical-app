@@ -8,6 +8,9 @@ const initialState = {
   allDoctor: [],
   doctorDetail: {},
   doctorMarkdown: {},
+  doctorSchedule: [],
+  doctorExtraInfor: {},
+  profileDoctor: {},
 };
 
 const appReducer = (state = initialState, action) => {
@@ -89,7 +92,40 @@ const appReducer = (state = initialState, action) => {
       return {
         ...state,
       };
+    case actionTypes.FETCH_DOCTOR_SCHEDULE_SUCCESS:
+      state.doctorSchedule = action.doctorSchedule;
+      return {
+        ...state,
+      };
 
+    case actionTypes.FETCH_DOCTOR_SCHEDULE_FAILED:
+      state.doctorSchedule = {};
+      return {
+        ...state,
+      };
+
+    case actionTypes.FETCH_DOCTOR_INFOR_EXTRA_SUCCESS:
+      state.doctorExtraInfor = action.doctorExtraInfor;
+      return {
+        ...state,
+      };
+
+    case actionTypes.FETCH_DOCTOR_INFOR_EXTRA_FAILED:
+      state.doctorExtraInfor = {};
+      return {
+        ...state,
+      };
+
+    case actionTypes.FETCH_PROFILE_DOCTOR_SUCCESS:
+      state.profileDoctor = action.profileDoctor;
+      return {
+        ...state,
+      };
+    case actionTypes.FETCH_PROFILE_DOCTOR_FAILED:
+      state.profileDoctor = {};
+      return {
+        ...state,
+      };
     default:
       return state;
   }

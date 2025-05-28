@@ -18,7 +18,7 @@ class Header extends Component {
       <div className="home-header-container">
         <div className="home-header-content">
           <div className="left-content">
-            <i className="fa-solid fa-bars"></i>
+            {/* <i className="fa-solid fa-bars"></i> */}
             <div>
               <img src={logo} className="logo-img" />
             </div>
