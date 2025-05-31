@@ -329,3 +329,28 @@ export const fetchProfileDoctor = (doctorId) => {
     }
   };
 };
+
+
+// post booking appointment
+export const postBookingAppointment = (data) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await postBookingAppointment(data);
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.POST_BOOKING_APPOINTMENT_SUCCESS,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.POST_BOOKING_APPOINTMENT_FAILED,
+        });
+      }
+      return res;
+    } catch (error) {
+      console.log("POST_BOOKING_APPOINTMENT_FAILED: ", error);
+      dispatch({
+        type: actionTypes.POST_BOOKING_APPOINTMENT_FAILED,
+      });
+    }
+  };
+};

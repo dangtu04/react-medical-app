@@ -4,17 +4,20 @@ import * as actions from "../../../store/actions";
 import { LANGUAGES } from "../../../utils/constant";
 import "./ProfileDoctor.scss";
 import defaultavt from "../../../assets/images/default-avatar.jpg";
+
 class ProfileDoctor extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
+
   componentDidMount() {
     let id = this.props.doctorId;
     if (id) {
       this.props.fetchProfileDoctor(id);
     }
   }
+
   componentDidUpdate(prevProps, prevState, snapShot) {}
 
   formatDate(timestamp, language) {
@@ -34,7 +37,6 @@ class ProfileDoctor extends Component {
 
   formatPrice = (price, language) => {
     if (!price) return "";
-
     if (language === LANGUAGES.VI) {
       return new Intl.NumberFormat("vi-VN").format(price) + " đ";
     } else {
@@ -42,9 +44,21 @@ class ProfileDoctor extends Component {
     }
   };
 
-  render() {
-    const { profileDoctor, dataTime } = this.props;
+  // Hàm xử lý thông tin thời gian khám
+  formatAppointmentTime = (dataTime, language) => {
+    if (!dataTime) return "";
+    
+    const timeValue = language === LANGUAGES.VI 
+      ? dataTime?.timeTypeData?.valueVi 
+      : dataTime?.timeTypeData?.valueEn;
+    
+    const formattedDate = this.formatDate(dataTime?.date, language);
+    
+    return `${timeValue} - ${formattedDate}`;
+  };
 
+  render() {
+    const { language, profileDoctor, dataTime } = this.props;
     const {
       positionData = {},
       firstName = "",
@@ -52,10 +66,11 @@ class ProfileDoctor extends Component {
       image = "",
       doctorInfor = {},
     } = profileDoctor || {};
+    
     const { valueVi = "", valueEn = "" } = positionData;
-
     const nameVi = `${valueVi} ${lastName} ${firstName}`;
     const nameEn = `${valueEn} ${firstName} ${lastName}`;
+    
     let imgBase64 = "";
     if (image) {
       try {
@@ -64,14 +79,14 @@ class ProfileDoctor extends Component {
         console.error("Failed to decode image:", e);
       }
     }
-
-    const { language } = this.props;
+    
     const priceValue =
       language === LANGUAGES.VI
         ? doctorInfor?.priceData?.valueVi
         : doctorInfor?.priceData?.valueEn;
-
+        
     const formattedPrice = this.formatPrice(priceValue, language);
+
     return (
       <>
         <div className="appointment-card">
@@ -87,12 +102,7 @@ class ProfileDoctor extends Component {
             </div>
             <div className="time">
               <i className="fa-solid fa-calendar-days"></i>
-              <span>
-                {language === LANGUAGES.VI
-                  ? dataTime?.timeTypeData.valueVi
-                  : dataTime?.timeTypeData.valueEn}{" "}
-                - {this.formatDate(dataTime?.date, language)}
-              </span>
+              <span>{this.formatAppointmentTime(dataTime, language)}</span>
             </div>
             <div className="clinic">
               <i className="fa-solid fa-house-medical text-dark"></i>

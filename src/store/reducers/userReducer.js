@@ -11,6 +11,7 @@ const initialState = {
   doctorSchedule: [],
   doctorExtraInfor: {},
   profileDoctor: {},
+  
 };
 
 const appReducer = (state = initialState, action) => {

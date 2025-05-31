@@ -44,9 +44,9 @@ class DoctorExtraInfor extends Component {
           {doctorExtraInfor?.addressClinic}
         </p>
 
-        <p>
-          <strong>Giá khám:</strong> {formattedPrice}
-        </p>
+        <div>
+          <strong>Giá khám:</strong> <p className="text-primary">{formattedPrice}</p>
+        </div>
 
         <p>
           <strong>Phương thức thanh toán:</strong>
