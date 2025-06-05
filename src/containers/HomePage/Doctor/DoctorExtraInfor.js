@@ -1,19 +1,40 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as actions from "../../../store/actions";
+import { getDoctorInforExtra } from "../../../services/userService"; // Thêm dòng này
 import "./DoctorExtraInfor.scss";
 import { LANGUAGES } from "../../../utils/constant";
 
 class DoctorExtraInfor extends Component {
-  componentDidMount() {
-    this.props.fetchDoctorInforExtra(this.props.doctorId);
+  constructor(props) {
+    super(props);
+    this.state = {
+      doctorExtraInfor: {},
+    };
   }
 
-  componentDidUpdate(prevProps, prevState, snapShot) {
+  async componentDidMount() {
+    await this.fetchDoctorExtraInfor(this.props.doctorId);
+  }
+
+  async componentDidUpdate(prevProps) {
     if (prevProps.doctorId !== this.props.doctorId) {
-      this.props.fetchDoctorInforExtra(this.props.doctorId);
+      await this.fetchDoctorExtraInfor(this.props.doctorId);
     }
   }
+
+  fetchDoctorExtraInfor = async (doctorId) => {
+    if (!doctorId) return;
+    try {
+      const res = await getDoctorInforExtra(doctorId);
+      if (res && res.errCode === 0) {
+        this.setState({ doctorExtraInfor: res.data });
+      } else {
+        this.setState({ doctorExtraInfor: {} });
+      }
+    } catch (error) {
+      this.setState({ doctorExtraInfor: {} });
+    }
+  };
 
   formatPrice = (price, language) => {
     if (!price) return "";
@@ -26,7 +47,8 @@ class DoctorExtraInfor extends Component {
   };
 
   render() {
-    const { language, doctorExtraInfor } = this.props;
+    const { language } = this.props;
+    const { doctorExtraInfor } = this.state;
 
     const priceValue =
       language === LANGUAGES.VI
@@ -44,8 +66,8 @@ class DoctorExtraInfor extends Component {
           {doctorExtraInfor?.addressClinic}
         </p>
 
-        <div>
-          <strong>Giá khám:</strong> <p className="text-primary">{formattedPrice}</p>
+        <div className="price">
+          <strong>Giá khám:</strong> <p>{formattedPrice}</p>
         </div>
 
         <p>
@@ -62,12 +84,6 @@ class DoctorExtraInfor extends Component {
 
 const mapStateToProps = (state) => ({
   language: state.app.language,
-  doctorExtraInfor: state.user.doctorExtraInfor,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchDoctorInforExtra: (doctorId) =>
-    dispatch(actions.fetchDoctorInforExtra(doctorId)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(DoctorExtraInfor);
+export default connect(mapStateToProps)(DoctorExtraInfor);

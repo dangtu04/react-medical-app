@@ -65,25 +65,24 @@ class BookingModal extends Component {
 
   handleBuildDoctorName = () => {
     let { dataTime, language } = this.props;
-    if (dataTime && !_.isEmpty(dataTime)) {   
+    if (dataTime && !_.isEmpty(dataTime)) {
       let name = "";
       if (language === LANGUAGES.VI) {
         name = `${dataTime.doctorData.lastName} ${dataTime.doctorData.firstName}`;
       } else {
         name = `${dataTime.doctorData.firstName} ${dataTime.doctorData.lastName}`;
-
       }
       return name;
     }
     return "";
   };
 
-
   handleConfirmBooking = async () => {
-    console.log("Confirm booking with data: ", this.state);
-
     let date = new Date(this.state.dateOfBirth).getTime();
-    let timeString =  this.formatAppointmentTime(this.props.dataTime, this.props.language);
+    let timeString = this.formatAppointmentTime(
+      this.props.dataTime,
+      this.props.language
+    );
     let doctorName = this.handleBuildDoctorName();
     let res = await postBookingAppointment({
       doctorId: this.state.doctorId,
@@ -100,7 +99,6 @@ class BookingModal extends Component {
       doctorName: doctorName,
       language: this.props.language,
     });
-    console.log("Check res: ", res);
 
     if (res && res.errCode === 0) {
       toast.success("Booking appointment succeed!");
@@ -141,8 +139,6 @@ class BookingModal extends Component {
     let { selectedGender } = this.state;
     let { isOpenModal, closeBookingModal, dataTime, genders, language } =
       this.props;
-
-    console.log("Check props: ", this.props);
 
     return (
       <Modal

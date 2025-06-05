@@ -64,7 +64,6 @@ class DoctorDetail extends Component {
               <p>
                 <i className="fa-solid fa-location-dot"></i> {provinceName}
               </p>
-              <button className="share-button">Chia sẻ</button>
             </div>
           </div>
 

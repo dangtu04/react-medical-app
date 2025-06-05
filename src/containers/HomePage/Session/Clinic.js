@@ -5,7 +5,10 @@ import Slider from "react-slick";
 import { FormattedMessage } from "react-intl";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./Specialty.scss";
+import "./Clinic.scss";
+import * as actions from "../../../store/actions";
+import { CommonUtils, path } from "../../../utils";
+import { withRouter } from "react-router";
 
 // Custom arrow components for next/prev buttons
 function SampleNextArrow(props) {
@@ -31,7 +34,17 @@ function SamplePrevArrow(props) {
 }
 
 class Clinic extends React.Component {
+  componentDidMount() {
+    this.props.fetchAllClinic();
+  }
+
+  handleViewClinicDetail = (clinic) => {
+    this.props.history.push(`${path.CLINIC_DETAIL}/${clinic.id}`);
+  };
+
   render() {
+    const { allClinic } = this.props;
+
     const settings = {
       dots: false,
       infinite: true,
@@ -44,29 +57,37 @@ class Clinic extends React.Component {
     };
 
     return (
-      <div className="specialty-container">
-        <div className="specialty-header">
-          <h3 className="specialty-title">
+      <div className="clinic-container">
+        <div className="clinic-header">
+          <h3 className="clinic-title">
             <FormattedMessage id="clinic.clinic" />
           </h3>
-          <Link to="/home" className="more">
+          <Link to="#" className="more">
             <FormattedMessage id="specialty.more" />
           </Link>
         </div>
-        <div className="specialty-content">
+        <div className="clinic-content">
           <Slider {...settings}>
-            {[1, 2, 3, 4, 5, 6].map((item) => (
-              <div key={item} className="slide-item">
-                <div className="slide-inner">
-                  <img
-                    className="specialty-img"
-                    src="https://cdn.bookingcare.vn/fo/2019/03/11/152704logo-bvcr-moi.jpg"
-                    alt={`specialty-${item}`}
-                  />
-                  <span>Bệnh viện Chợ Rẫy</span>
+            {allClinic && allClinic.length > 0 ? (
+              allClinic.map((item) => (
+                <div key={item.id} className="slide-item">
+                  <div
+                    className="slide-inner"
+                    onClick={() => this.handleViewClinicDetail(item)}
+                  >
+                    <img
+                      className="clinic-img"
+                      src={CommonUtils.decodeBase64ImageToBinary(item.image)}
+                      alt={item.name}
+                    />
+                    <span>{item.name}</span>
+                   
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))
+            ) : (
+              <div>Loading...</div>
+            )}
           </Slider>
         </div>
       </div>
@@ -76,6 +97,13 @@ class Clinic extends React.Component {
 
 const mapStateToProps = (state) => ({
   isLoggedIn: state.user.isLoggedIn,
+  allClinic: state.clinic.allClinic,
 });
 
-export default connect(mapStateToProps)(Clinic);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchAllClinic: () => dispatch(actions.fetchAllClinic()),
+  };
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Clinic));

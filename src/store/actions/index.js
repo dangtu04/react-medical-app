@@ -1,3 +1,5 @@
 export * from './appActions'
 export * from './userActions'
 export * from './allcodeActions'
+export * from './specialtyActions'
+export * from './clinicActions'

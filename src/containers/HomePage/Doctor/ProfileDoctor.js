@@ -1,24 +1,44 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as actions from "../../../store/actions";
-import { LANGUAGES } from "../../../utils/constant";
+import { getProfileDoctor } from "../../../services/userService";
+import { LANGUAGES, path } from "../../../utils/constant";
 import "./ProfileDoctor.scss";
 import defaultavt from "../../../assets/images/default-avatar.jpg";
-
+import { withRouter } from "react-router";
 class ProfileDoctor extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      profileDoctor: {},
+    };
   }
 
-  componentDidMount() {
-    let id = this.props.doctorId;
-    if (id) {
-      this.props.fetchProfileDoctor(id);
+  async componentDidMount() {
+    const { doctorId } = this.props;
+    if (doctorId) {
+      await this.fetchProfileDoctor(doctorId);
     }
   }
 
-  componentDidUpdate(prevProps, prevState, snapShot) {}
+  async componentDidUpdate(prevProps) {
+    if (prevProps.doctorId !== this.props.doctorId) {
+      await this.fetchProfileDoctor(this.props.doctorId);
+    }
+  }
+
+  fetchProfileDoctor = async (doctorId) => {
+    if (!doctorId) return;
+    try {
+      const res = await getProfileDoctor(doctorId);
+      if (res && res.errCode === 0) {
+        this.setState({ profileDoctor: res.data });
+      } else {
+        this.setState({ profileDoctor: {} });
+      }
+    } catch (error) {
+      this.setState({ profileDoctor: {} });
+    }
+  };
 
   formatDate(timestamp, language) {
     if (!timestamp) return "";
@@ -44,21 +64,23 @@ class ProfileDoctor extends Component {
     }
   };
 
-  // Hàm xử lý thông tin thời gian khám
   formatAppointmentTime = (dataTime, language) => {
     if (!dataTime) return "";
-    
-    const timeValue = language === LANGUAGES.VI 
-      ? dataTime?.timeTypeData?.valueVi 
+    const timeValue = language === LANGUAGES.VI
+      ? dataTime?.timeTypeData?.valueVi
       : dataTime?.timeTypeData?.valueEn;
-    
     const formattedDate = this.formatDate(dataTime?.date, language);
-    
     return `${timeValue} - ${formattedDate}`;
   };
 
+    handleViewDoctorDetail = (doctorId) => {
+      this.props.history.push(`${path.DOCTOR_DETAIL}/${doctorId}`)
+    }
+
   render() {
-    const { language, profileDoctor, dataTime } = this.props;
+    const { language, dataTime, isShowLinkDetail } = this.props;
+    const { profileDoctor } = this.state;
+
     const {
       positionData = {},
       firstName = "",
@@ -66,11 +88,11 @@ class ProfileDoctor extends Component {
       image = "",
       doctorInfor = {},
     } = profileDoctor || {};
-    
+
     const { valueVi = "", valueEn = "" } = positionData;
     const nameVi = `${valueVi} ${lastName} ${firstName}`;
     const nameEn = `${valueEn} ${firstName} ${lastName}`;
-    
+
     let imgBase64 = "";
     if (image) {
       try {
@@ -79,12 +101,12 @@ class ProfileDoctor extends Component {
         console.error("Failed to decode image:", e);
       }
     }
-    
+
     const priceValue =
       language === LANGUAGES.VI
         ? doctorInfor?.priceData?.valueVi
         : doctorInfor?.priceData?.valueEn;
-        
+
     const formattedPrice = this.formatPrice(priceValue, language);
 
     return (
@@ -96,14 +118,20 @@ class ProfileDoctor extends Component {
             className="doctor-image"
           />
           <div className="appointment-info">
-            <div className="title">ĐẶT LỊCH KHÁM</div>
+         
             <div className="doctor-name">
               {language === LANGUAGES.VI ? nameVi : nameEn}
             </div>
-            <div className="time">
+            {this.formatAppointmentTime(dataTime, language) && (
+              <div className="time">
+                <i className="fa-solid fa-calendar-days"></i>
+                {this.formatAppointmentTime(dataTime, language)}
+              </div>
+            )}
+            {/* <div className="time">
               <i className="fa-solid fa-calendar-days"></i>
               <span>{this.formatAppointmentTime(dataTime, language)}</span>
-            </div>
+            </div> */}
             <div className="clinic">
               <i className="fa-solid fa-house-medical text-dark"></i>
               {doctorInfor?.nameClinic}
@@ -113,8 +141,16 @@ class ProfileDoctor extends Component {
               {doctorInfor?.addressClinic}
             </div>
           </div>
+            {isShowLinkDetail ? (
+          <div className="doctor-detail-link">
+            <p onClick={() => this.handleViewDoctorDetail(profileDoctor.id)}>
+              Xem chi tiết
+            </p>
+          </div>
+        ) : <div className="price-info">Giá khám {formattedPrice}</div>}
         </div>
-        <div className="price-info">Giá khám {formattedPrice}</div>
+      
+        
       </>
     );
   }
@@ -122,12 +158,6 @@ class ProfileDoctor extends Component {
 
 const mapStateToProps = (state) => ({
   language: state.app.language,
-  profileDoctor: state.user.profileDoctor,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchProfileDoctor: (doctorId) =>
-    dispatch(actions.fetchProfileDoctor(doctorId)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileDoctor);
+export default withRouter(connect(mapStateToProps)(ProfileDoctor));

@@ -7,7 +7,12 @@
   width: 100%;
   //   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 10px;
-
+  .doctor-detail-link {
+    p {
+      color: #45c3d2;
+      cursor: pointer;
+    }
+  }
   .doctor-image {
     width: 80px;
     height: 80px;
@@ -29,10 +34,10 @@
     .doctor-name {
       font-size: 18px;
       font-weight: bold;
-      color: #2265b6;
+      color: #45c3d2;
 
       span {
-        color: #2265b6;
+        color: #45c3d2;
       }
     }
 

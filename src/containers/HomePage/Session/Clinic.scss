@@ -1,14 +1,14 @@
-.specialty-container {
+.clinic-container {
   position: relative;
   padding: 20px 100px;
   height: 380px;
 
-  .specialty-header {
+  .clinic-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    .specialty-title {
+    .clinic-title {
       font-weight: 600;
     }
 
@@ -26,7 +26,7 @@
     }
   }
 
-  .specialty-content {
+  .clinic-content {
     padding: 20px 0;
     justify-content: space-around;
     .slide-item {
@@ -47,14 +47,14 @@
         text-decoration: none;
 
         img {
-          width: 100%;
+          width:260px;
           height: 180px;
           border-radius: 10px;
         }
         span {
           padding-top: 20px;
           font-weight: 700;
-          font-size: 20px;
+          font-size: 18px;
           color: black;
         }
 

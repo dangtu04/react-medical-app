@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import * as actions from "../../../store/actions";
 import "./DoctorSchedule.scss";
 import { LANGUAGES } from "../../../utils/constant";
 import moment from "moment";
 import localization from "moment/locale/vi";
 import { getDoctorSchedule } from "../../../services/userService";
 import BookingModal from "./Modal/BookingModal";
+import { connect } from "react-redux";
 
+// ...existing code...
 class DoctorSchedule extends Component {
   constructor(props) {
     super(props);
@@ -15,6 +15,7 @@ class DoctorSchedule extends Component {
       arrDays: [],
       isOpenModalBooking: false,
       dataSchedule: {},
+      doctorSchedule: [],
     };
   }
 
@@ -33,33 +34,50 @@ class DoctorSchedule extends Component {
       object.value = moment(new Date()).add(i, "days").startOf("day").valueOf();
       arrDays.push(object);
     }
-
     return arrDays;
+  };
+
+  fetchDoctorSchedule = async (doctorId, date) => {
+    try {
+      let res = await getDoctorSchedule(doctorId, date);
+      if (res && res.errCode === 0) {
+        this.setState({ doctorSchedule: res.data });
+      } else {
+        this.setState({ doctorSchedule: [] });
+      }
+    } catch (error) {
+      this.setState({ doctorSchedule: [] });
+    }
   };
 
   handleOnChangeSelect = async (event) => {
     if (this.props.doctorId && this.props.doctorId !== -1) {
-      const { doctorId } = this.props;
       let date = event.target.value;
-      await this.props.fetchDoctorSchedule(doctorId, date);
+      await this.fetchDoctorSchedule(this.props.doctorId, date);
     }
   };
 
   async componentDidMount() {
-    let { language } = this.props;
+    let { language, doctorId } = this.props;
     let arrDays = this.getArrDays(language);
     this.setState({ arrDays: arrDays });
+
+    if (doctorId && arrDays.length > 0) {
+      await this.fetchDoctorSchedule(doctorId, arrDays[0].value);
+    }
   }
 
-  async componentDidUpdate(prevProps, prevState, snapShot) {
+  async componentDidUpdate(prevProps, prevState) {
     if (prevProps.language !== this.props.language) {
       let arrDays = this.getArrDays(this.props.language);
       this.setState({ arrDays: arrDays });
     }
 
     if (prevProps.doctorId !== this.props.doctorId) {
-      let date = this.state.arrDays[0].value;
-      await this.props.fetchDoctorSchedule(this.props.doctorId, date);
+      let { arrDays } = this.state;
+      if (this.props.doctorId && arrDays.length > 0) {
+        await this.fetchDoctorSchedule(this.props.doctorId, arrDays[0].value);
+      }
     }
   }
 
@@ -77,15 +95,14 @@ class DoctorSchedule extends Component {
   };
 
   render() {
-    const { arrDays, isOpenModalBooking, dataSchedule } = this.state;
-    const { doctorSchedule } = this.props;
-    let { language } = this.props;
+    const { arrDays, isOpenModalBooking, dataSchedule, doctorSchedule } = this.state;
+    const { language } = this.props;
 
     return (
       <>
         <div className="schedule">
           <div className="select-date">
-            <select onChange={(event) => this.handleOnChangeSelect(event)}>
+            <select onChange={this.handleOnChangeSelect}>
               {arrDays &&
                 arrDays.length > 0 &&
                 arrDays.map((item, index) => {
@@ -144,18 +161,9 @@ class DoctorSchedule extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
+export default connect(
+  state => ({
     language: state.app.language,
-    doctorSchedule: state.user.doctorSchedule,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchDoctorSchedule: (doctorId, date) =>
-      dispatch(actions.fetchDoctorSchedule(doctorId, date)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(DoctorSchedule);
+  })
+)(DoctorSchedule);
+// ...end of file...

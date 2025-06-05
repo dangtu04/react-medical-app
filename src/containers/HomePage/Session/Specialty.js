@@ -1,4 +1,3 @@
-/* Specialty.js */
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -7,8 +6,10 @@ import { FormattedMessage } from "react-intl";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./Specialty.scss";
+import * as actions from "../../../store/actions";
+import { CommonUtils, path } from "../../../utils";
+import { withRouter } from "react-router";
 
-// Custom arrow components for next/prev buttons
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
@@ -30,9 +31,17 @@ function SamplePrevArrow(props) {
     />
   );
 }
-
 class Specialty extends React.Component {
+  componentDidMount() {
+    this.props.fetchAllSpecialty();
+  }
+
+    handleViewSpecialtyDetail = (specialty) => {
+      this.props.history.push(`${path.SPECIALTY_DETAIL}/${specialty.id}`)
+    }
   render() {
+    const { allSpecialty } = this.props;
+
     const settings = {
       dots: false,
       infinite: true,
@@ -56,18 +65,24 @@ class Specialty extends React.Component {
         </div>
         <div className="specialty-content">
           <Slider {...settings}>
-            {[1, 2, 3, 4, 5, 6].map((item) => (
-              <div key={item} className="slide-item">
-                <div className="slide-inner">
-                  <img
-                    className="specialty-img"
-                    src="https://cdn.bookingcare.vn/fo/w640/2023/12/26/101739-y-hoc-co-truyen.png"
-                    alt={`specialty-${item}`}
-                  />
-                  <span>Y học cổ truyển</span>
+            {allSpecialty && allSpecialty.length > 0 ? (
+              allSpecialty.map((item) => (
+                <div key={item.id} className="slide-item">
+                  <div className="slide-inner"
+                   onClick={()=>this.handleViewSpecialtyDetail(item)}
+                  >
+                    <img
+                      className="specialty-img"
+                      src={CommonUtils.decodeBase64ImageToBinary(item.image)}
+                      alt={item.name}
+                    />
+                    <span>{item.name}</span>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))
+            ) : (
+              <div>Loading...</div>
+            )}
           </Slider>
         </div>
       </div>
@@ -77,6 +92,13 @@ class Specialty extends React.Component {
 
 const mapStateToProps = (state) => ({
   isLoggedIn: state.user.isLoggedIn,
+  allSpecialty: state.specialty.allSpecialty,
 });
 
-export default connect(mapStateToProps)(Specialty);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchAllSpecialty: () => dispatch(actions.fetchAllSpecialty()),
+  };
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Specialty));

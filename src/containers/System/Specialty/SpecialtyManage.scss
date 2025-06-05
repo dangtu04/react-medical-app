@@ -1,0 +1,17 @@
+.specialty-manage-container {
+  background: #fff;
+  border-radius: 8px;
+    padding: 24px;
+  .title {
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+  .form-group label {
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .btn {
+    min-width: 140px;
+  }
+}

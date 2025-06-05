@@ -5,6 +5,8 @@ import UserManage from "../containers/System/UserManage";
 import UserManagerV2 from "../containers/System/Admin/UserManagerV2";
 import Header from "../containers/Header/Header";
 import DoctorManage from "../containers/System/Admin/DoctorManage";
+import SpecialtyManage from "../containers/System/Specialty/SpecialtyManage";
+import ClinicManage from "../containers/System/Clinic/ClinicManage";
 
 class System extends Component {
   render() {
@@ -18,6 +20,8 @@ class System extends Component {
               <Route path="/system/user-manage-v1" component={UserManage} />
               <Route path="/system/user-manage-v2" component={UserManagerV2} />
               <Route path="/system/doctor-introduce" component={DoctorManage} />
+              <Route path="/system/specialty-manage" component={SpecialtyManage} />
+              <Route path="/system/clinic-manage" component={ClinicManage} />
       
               <Route
                 component={() => {

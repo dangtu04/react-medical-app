@@ -80,7 +80,7 @@ class UserManageV2 extends Component {
     }
   }
 
-  handleOnChangImage = async (event) => {
+  handleOnChangeImage = async (event) => {
     let data = event.target.files;
     let file = data[0];
     if (file) {
@@ -443,7 +443,7 @@ class UserManageV2 extends Component {
                     id="image"
                     name="image"
                     hidden
-                    onChange={(event) => this.handleOnChangImage(event)}
+                    onChange={(event) => this.handleOnChangeImage(event)}
                   />
                   <label className="image-label" htmlFor="image">
                     <FormattedMessage id="user-manage.form.upload" />{" "}

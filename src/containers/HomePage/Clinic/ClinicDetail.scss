@@ -1,0 +1,21 @@
+.description-clinic {
+        padding: 12px 100px;
+}
+.list-doctor {
+    background-color: #eeeeee;
+    padding: 12px 100px;
+  .each-doctor {
+    background-color: #fff;
+    // border: 1px solid blue;
+    padding: 12px;
+    border-radius: 10px;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    .content-left {
+        // border: 1px solid red;
+    }
+    .content-right {
+        // border: 1px solid red;
+    }
+  }
+}

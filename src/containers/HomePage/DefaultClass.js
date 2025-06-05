@@ -14,7 +14,11 @@ class DefaultClass extends Component {
   render() {
     const { language } = this.props;
 
-    return <></>;
+    return (
+      <>
+        <div></div>
+      </>
+    );
   }
 }
 

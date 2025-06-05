@@ -71,7 +71,7 @@ class OutStandingDoctors extends React.Component {
     };
 
     let arrDoctor = this.state.arrDoctor;
-    console.log(arrDoctor);
+
     let { language } = this.props;
 
     return (

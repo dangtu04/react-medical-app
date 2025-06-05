@@ -1,4 +1,6 @@
 import { getAllCode } from "../../services/allcodeService";
+import { getClinic } from "../../services/clinicService";
+import { getSpecialty } from "../../services/specialtyService";
 import { saveBulkDoctorSchedule } from "../../services/userService";
 import actionTypes from "./actionTypes";
 
@@ -130,6 +132,9 @@ export const getRequiredDoctorInfor = () => {
       let resPrice = await getAllCode("PRICE");
       let resPayment = await getAllCode("PAYMENT");
       let resProvince = await getAllCode("PROVINCE");
+      let resSpecialty = await getSpecialty();
+      let resClinic = await getClinic()
+      // let resClinic = await getAllCode("CLINIC");
 
       if (
         resPrice &&
@@ -137,12 +142,18 @@ export const getRequiredDoctorInfor = () => {
         resPayment &&
         resPayment.errCode === 0 &&
         resProvince &&
-        resProvince.errCode === 0
+        resProvince.errCode === 0 &&
+        resSpecialty &&
+        resSpecialty.errCode === 0 &&
+        resClinic &&
+        resClinic.errCode === 0
       ) {
         let data = {
           resPrice: resPrice.data,
           resPayment: resPayment.data,
           resProvince: resProvince.data,
+          resSpecialty: resSpecialty.data,
+          resClinic: resClinic.data,
         };
         dispatch({
           type: actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_SUCCESS,
