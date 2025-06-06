@@ -33,7 +33,8 @@
         "welcome":"Xin chào",
         "doctor": {
             "doctor": "Bác sĩ",
-            "schedule": "Lịch trình"
+            "schedule": "Lịch trình",
+            "patient": "Bệnh nhân"
         }
     },
     "user-manage": {

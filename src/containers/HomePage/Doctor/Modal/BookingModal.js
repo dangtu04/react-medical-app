@@ -78,7 +78,9 @@ class BookingModal extends Component {
   };
 
   handleConfirmBooking = async () => {
-    let date = new Date(this.state.dateOfBirth).getTime();
+    // let date = new Date(this.state.dateOfBirth).getTime();
+      let dob = new Date(this.state.dateOfBirth);
+    let formattedDate = dob.toLocaleDateString("vi-VN");
     let timeString = this.formatAppointmentTime(
       this.props.dataTime,
       this.props.language
@@ -90,7 +92,8 @@ class BookingModal extends Component {
       lastName: this.state.lastName,
       email: this.state.email,
       phoneNumber: this.state.phoneNumber,
-      date: date,
+      date: this.props.dataTime.date,
+      dateOfBirth: formattedDate,
       selectedGender: this.state.selectedGender,
       address: this.state.address,
       reason: this.state.reason,
@@ -139,7 +142,7 @@ class BookingModal extends Component {
     let { selectedGender } = this.state;
     let { isOpenModal, closeBookingModal, dataTime, genders, language } =
       this.props;
-
+    console.log("check props: ", this.props)
     return (
       <Modal
         isOpen={isOpenModal}
@@ -164,18 +167,8 @@ class BookingModal extends Component {
             </div>
 
             <div className="row">
-              <div className="col-6">
+                 <div className="col-6">
                 <label>Họ</label>
-                <input
-                  className="form-control"
-                  value={this.state.firstName}
-                  onChange={(event) =>
-                    this.handleOnChangeInput(event, "firstName")
-                  }
-                />
-              </div>
-              <div className="col-6">
-                <label>Tên</label>
                 <input
                   className="form-control"
                   value={this.state.lastName}
@@ -184,6 +177,17 @@ class BookingModal extends Component {
                   }
                 />
               </div>
+              <div className="col-6">
+                <label>Tên</label>
+                <input
+                  className="form-control"
+                  value={this.state.firstName}
+                  onChange={(event) =>
+                    this.handleOnChangeInput(event, "firstName")
+                  }
+                />
+              </div>
+           
               <div className="col-6">
                 <label>Địa chỉ Email</label>
                 <input

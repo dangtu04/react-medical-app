@@ -33,7 +33,8 @@
         "welcome":"Welcome",
         "doctor": {
             "doctor": "Doctor",
-            "schedule": "Schedule"
+            "schedule": "Schedule",
+            "patient": "Patient"
         }
     },
     "user-manage": {
