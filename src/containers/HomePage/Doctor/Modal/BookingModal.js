@@ -106,8 +106,9 @@ class BookingModal extends Component {
     if (res && res.errCode === 0) {
       toast.success("Booking appointment succeed!");
       this.props.closeBookingModal();
-    } else {
-      toast.error("Booking appointment failed!");
+    } else if(res && res.errCode == 2) {
+
+      toast.error("Bạn dã đặt lịch khám trong ngày này rồi, vui lòng chọn ngày khác!");
     }
   };
 
@@ -268,7 +269,7 @@ class BookingModal extends Component {
               Xác nhận
             </button>
             <button className="btn-booking-cancel" onClick={closeBookingModal}>
-              Cancel
+              Huỷ
             </button>
           </div>
         </div>

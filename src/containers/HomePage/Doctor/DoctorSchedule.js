@@ -81,12 +81,16 @@ class DoctorSchedule extends Component {
     }
   }
 
-  handleOnClickScheduleTime = (item) => {
-    this.setState({
-      isOpenModalBooking: true,
-      dataSchedule: item,
-    });
-  };
+handleOnClickScheduleTime = (item) => {
+  if (!this.props.isLoggedIn) {
+    alert("Vui lòng đăng nhập để đặt lịch!");
+    return;
+  }
+  this.setState({
+    isOpenModalBooking: true,
+    dataSchedule: item,
+  });
+};
 
   closeBookingModal = () => {
     this.setState({
@@ -164,6 +168,7 @@ class DoctorSchedule extends Component {
 export default connect(
   state => ({
     language: state.app.language,
+    isLoggedIn: state.user.isLoggedIn, 
   })
 )(DoctorSchedule);
 // ...end of file...

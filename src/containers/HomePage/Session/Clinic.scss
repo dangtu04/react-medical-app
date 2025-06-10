@@ -39,6 +39,7 @@
         border-radius: 20px;
         margin: 0 30px;
         padding: 20px 10px 30px 10px;
+        // padding: 50px;
         text-align: center;
         display: flex;
         flex-direction: column;
@@ -47,9 +48,10 @@
         text-decoration: none;
 
         img {
-          width:260px;
-          height: 180px;
+          width:90%;
+          height: 163.34px;
           border-radius: 10px;
+          //  object-fit: cover;
         }
         span {
           padding-top: 20px;

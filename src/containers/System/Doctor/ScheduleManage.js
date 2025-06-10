@@ -85,48 +85,52 @@ class ScheduleManage extends Component {
   };
 
   handleSaveSchedule = async () => {
-    let { selectedDoctor, currentDate, timeList } = this.state;
-    let result = [];
-    if (!selectedDoctor) {
-      toast.error("Doctor not selected!");
-      return;
-    }
-    if (!currentDate) {
-      toast.error("Date not selected!");
-      return;
-    }
-    // let formattedDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER);
-    let formattedDate = new Date(currentDate).getTime().toString();
-    if (timeList && timeList.length > 0) {
-      let selectedTime = timeList.filter((item) => item.isSelected === true);
-      if (selectedTime && selectedTime.length > 0) {
-        selectedTime.map((time) => {
-          let object = {};
-          object.doctorId = selectedDoctor.value;
-          object.date = formattedDate;
-          object.timeType = time.keyMap;
-          result.push(object);
-        });
-      } else {
-        toast.error("Time not selected!");
-        return;
-      }
-    }
-    let res = await this.props.saveBulkDoctorScheduleRedux({
-      arrSchedule: result,
-      doctorId: selectedDoctor.value,
-      formattedDate: formattedDate,
-    });
-    if (res && res.errCode === 0) {
-      toast.success(res.message);
+  let { selectedDoctor, currentDate, timeList } = this.state;
+  const { userInfo } = this.props;
+  const isDoctor = userInfo && userInfo.roleId === "R2"; // thay "R2" nếu role khác
+  let doctorId = isDoctor ? userInfo.id : (selectedDoctor && selectedDoctor.value);
+
+  let result = [];
+  if (!doctorId) {
+    toast.error("Doctor not selected!");
+    return;
+  }
+  if (!currentDate) {
+    toast.error("Date not selected!");
+    return;
+  }
+  let formattedDate = new Date(currentDate).getTime().toString();
+  if (timeList && timeList.length > 0) {
+    let selectedTime = timeList.filter((item) => item.isSelected === true);
+    if (selectedTime && selectedTime.length > 0) {
+      selectedTime.map((time) => {
+        let object = {};
+        object.doctorId = doctorId;
+        object.date = formattedDate;
+        object.timeType = time.keyMap;
+        result.push(object);
+      });
     } else {
-      toast.error(res.errMessage);
+      toast.error("Time not selected!");
+      return;
     }
-  };
+  }
+  let res = await this.props.saveBulkDoctorScheduleRedux({
+    arrSchedule: result,
+    doctorId: doctorId,
+    formattedDate: formattedDate,
+  });
+  if (res && res.errCode === 0) {
+    toast.success(res.message);
+  } else {
+    toast.error(res.errMessage);
+  }
+};
 
   render() {
     const { listDoctor, selectedDoctor, currentDate, timeList } = this.state;
-    const { language } = this.props;
+    const { language, userInfo } = this.props;
+    const isDoctor = userInfo && userInfo.roleId === "R2";
     return (
       <div className="schedule-manage-container">
         <div className="s-m-title">
@@ -134,6 +138,7 @@ class ScheduleManage extends Component {
         </div>
 
         <div className="row mt-5">
+         {!isDoctor && (
           <div className="col-6 form-group mb-3">
             <label className="mb-2">
               <FormattedMessage id="schedule-manage.choose-doctor" />
@@ -144,6 +149,7 @@ class ScheduleManage extends Component {
               options={listDoctor}
             />
           </div>
+        )}
           <div className="col-6 form-group mb-3">
             <label className="mb-2">
               <FormattedMessage id="schedule-manage.choose-date" />
@@ -196,6 +202,7 @@ const mapStateToProps = (state) => ({
   allDoctor: state.user.allDoctor,
   language: state.app.language,
   times: state.allcode.times,
+   userInfo: state.user.userInfo, 
 });
 
 const mapDispatchToProps = (dispatch) => ({

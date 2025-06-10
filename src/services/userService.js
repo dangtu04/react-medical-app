@@ -80,6 +80,12 @@ const postSendRemedy = (data) => {
   return axios.post("/api/send-remedy", data);
 };
 
+const getAppointmentHistory = (patientId) => {
+  return axios.get(
+    `/api/get-appointment-history?patientId=${patientId}`
+  );
+};
+
 export {
   userLogin,
   getAllUsers,
@@ -98,5 +104,6 @@ export {
   postBookingAppointment,
   postVerifyBookingAppointment,
   getAllPatientForDoctor,
-  postSendRemedy
+  postSendRemedy,
+  getAppointmentHistory
 };

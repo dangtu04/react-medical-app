@@ -66,8 +66,11 @@ class DoctorManage extends Component {
       let dataSelectPrice = this.buildDataInputSelect(resPrice, "PRICE");
       let dataSelectPayment = this.buildDataInputSelect(resPayment);
       let dataSelectProvince = this.buildDataInputSelect(resProvince);
-      let dataSelectSpecialty = this.buildDataInputSelect(resSpecialty,"SPECIALTY");
-      let dataSelectClinic = this.buildDataInputSelect(resClinic,"CLINIC");
+      let dataSelectSpecialty = this.buildDataInputSelect(
+        resSpecialty,
+        "SPECIALTY"
+      );
+      let dataSelectClinic = this.buildDataInputSelect(resClinic, "CLINIC");
       this.setState({
         listDoctor: dataSelect,
         listPrice: dataSelectPrice,
@@ -87,8 +90,11 @@ class DoctorManage extends Component {
       let dataSelectPrice = this.buildDataInputSelect(resPrice, "PRICE");
       let dataSelectPayment = this.buildDataInputSelect(resPayment);
       let dataSelectProvince = this.buildDataInputSelect(resProvince);
-      let dataSelectSpecialty = this.buildDataInputSelect(resSpecialty,"SPECIALTY");
-      let dataSelectClinic = this.buildDataInputSelect(resClinic,"CLINIC");
+      let dataSelectSpecialty = this.buildDataInputSelect(
+        resSpecialty,
+        "SPECIALTY"
+      );
+      let dataSelectClinic = this.buildDataInputSelect(resClinic, "CLINIC");
 
       this.setState({
         listPrice: dataSelectPrice,
@@ -144,10 +150,12 @@ class DoctorManage extends Component {
       });
 
       let selectedSpecialty = this.state.listSpecialty.find((item) => {
-        return item && item.value === doctorDetail?.doctorInfor?.specialtyId;})
+        return item && item.value === doctorDetail?.doctorInfor?.specialtyId;
+      });
 
       let selectedClinic = this.state.listClinic.find((item) => {
-        return item && item.value === doctorDetail?.doctorInfor?.clinicId;})
+        return item && item.value === doctorDetail?.doctorInfor?.clinicId;
+      });
 
       this.setState({
         description: doctorDetail?.Markdown?.description || "",
@@ -175,8 +183,8 @@ class DoctorManage extends Component {
         selectedPayment: null,
         selectedPrice: null,
         selectedProvince: null,
-              selectedClinic: null,
-      selectedSpecialty: null,
+        selectedClinic: null,
+        selectedSpecialty: null,
       });
     }
   };
@@ -283,7 +291,7 @@ class DoctorManage extends Component {
 
     return (
       <div className="manage-doctor-container">
-        <h1 className="title text-center">Manage Doctor</h1>
+        <h1 className="title text-center">Thông tin Bác sĩ</h1>
 
         <div className="manage-doctor-editor">
           <div className="more-info row p-3 bg-light mb-3">
@@ -316,7 +324,7 @@ class DoctorManage extends Component {
                   <label htmlFor="provinceId" className="form-label">
                     Clinic
                   </label>
-                    <Select
+                  <Select
                     value={selectedClinic}
                     onChange={this.handleOnChangeSelectDoctorInfor}
                     options={this.state.listClinic}

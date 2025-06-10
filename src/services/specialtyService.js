@@ -14,4 +14,21 @@ const getSpecialtyDetail = (data) => {
   );
 };
 
-export { createSpecialty, getSpecialty, getSpecialtyDetail };
+const getSpecialtyById = (id) => {
+  return axios.get(`/api/get-specialty-by-id?id=${id}`);
+};
+const updateSpecialty = (data) => {
+  return axios.post(`/api/update-specialty`, data);
+};
+const deleteSpecialty = (id) => {
+  return axios.delete(`/api/delete-specialty?id=${id}`);
+};
+
+export {
+  createSpecialty,
+  getSpecialty,
+  getSpecialtyDetail,
+  getSpecialtyById,
+  updateSpecialty,
+  deleteSpecialty,
+};

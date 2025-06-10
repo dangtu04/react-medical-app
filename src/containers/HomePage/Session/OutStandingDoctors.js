@@ -74,6 +74,7 @@ class OutStandingDoctors extends React.Component {
 
     let { language } = this.props;
 
+    console.log('arrDoctor', arrDoctor);
     return (
       <div className="featured-dr">
         <div className="featured-dr-container">
@@ -113,7 +114,6 @@ class OutStandingDoctors extends React.Component {
                         <span>
                           {language === LANGUAGES.VI ? nameVi : nameEn}
                         </span>
-                        <p>Bệnh Viêm gan</p>
                       </div>
                     </div>
                   );

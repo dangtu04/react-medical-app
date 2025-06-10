@@ -1,0 +1,99 @@
+
+.register-container {
+  max-width: 800px;
+  margin: 40px auto;
+  background: #ffffff; // màu nền chính
+  border-radius: 16px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+  padding: 32px 24px;
+  position: relative;
+
+  .go-login {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 14px;
+    color: #46c3d2;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #ffc10e;
+    }
+
+    i {
+      font-size: 16px;
+    }
+  }
+}
+
+.register-form {
+    h2{
+    color: #46c3d2;
+    font-weight: 600;
+    }
+  .form-label {
+    font-weight: 500;
+    // color: #46c3d2;
+  }
+
+  input,
+  select {
+    border: 1px solid #92d7ee;
+    &:focus {
+    //   border-color: #46c3d2;
+      box-shadow: 0 0 0 0.2rem rgba(70, 195, 210, 0.25);
+    }
+  }
+
+  .input-img {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .image-label {
+      cursor: pointer;
+      color: #46c3d2;
+      font-weight: 500;
+      margin-right: 10px;
+      transition: color 0.3s;
+
+      i {
+        margin-left: 4px;
+      }
+
+      &:hover {
+        color: #ffc10e;
+      }
+    }
+
+    .preview-img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background-size: cover;
+      background-position: center;
+      border: 2px solid #92d7ee;
+      margin-left: 8px;
+    }
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #46c3d2, #92d7ee);
+    border: none;
+    font-weight: 600;
+    color: white;
+    // padding: 8px 24px;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+
+    &:hover {
+      background: #ffc10e;
+      color: #333;
+    }
+  }
+}

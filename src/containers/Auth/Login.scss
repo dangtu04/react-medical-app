@@ -1,36 +1,98 @@
 .login-background {
-  background: linear-gradient(135deg, rgb(10, 189, 234), rgb(212, 234, 225));
+  background: #edfffa;
   height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   .login-container {
-    width: 400px;
-    height: 100%;
-    margin: auto;
-    // border: 1px solid red;
+    width: 420px;
     background-color: white;
-    border-radius: 10px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 
     .login-content {
-      padding: 20px;
+      padding: 30px;
 
-      .input-login {
-        margin-bottom: 7px;;
-        padding:4px 10px;
-        
+      h1 {
+        color: #46c3d2;
+        font-weight: 700;
+        margin-bottom: 24px;
+      }
+
+      .login-input {
+        margin-bottom: 20px;
+
+        label {
+          font-weight: 600;
+          color: #333;
+        }
+
+        .input-login {
+          width: 100%;
+          padding: 10px 12px;
+          border: 1px solid #ccc;
+          border-radius: 8px;
+          margin-top: 6px;
+          transition: border-color 0.3s;
+
+          &:focus {
+            border-color: #46c3d2;
+            outline: none;
+          }
+        }
+      }
+
+      .text-danger {
+        color: red;
+        font-size: 14px;
+        margin-top: -10px;
+        margin-bottom: 10px;
       }
 
       .btn-login {
-        border-radius: 10px;
         width: 100%;
-        padding: 7px 0px;
-        background: linear-gradient(
-          135deg,
-          rgb(10, 189, 234), rgb(212, 234, 225)
-        );
+        padding: 10px 0;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #46c3d2, #92d7ee);
         color: white;
-        border: none;
         font-weight: 600;
+        border: none;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background: #ffc10e;
+          color: #333;
+        }
+      }
+
+      span {
+        font-size: 14px;
+        color: #666;
+        display: block;
+        text-align: center;
         margin-top: 16px;
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+          color: #46c3d2;
+        }
       }
     }
+  }
+}
+.home-icon {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 24px;
+  color: #46c3d2;
+ 
+  transition: color 0.3s;
+
+  i:hover {
+     cursor: pointer;
+    color: #ffc10e;
   }
 }

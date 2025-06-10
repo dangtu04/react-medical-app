@@ -25,6 +25,10 @@ import Doctor from '../routes/Doctor';
 import VerifyEmail from './HomePage/VerifyEmail';
 import SpecialtyDetail from './HomePage/Specialty/SpecialtyDetail';
 import ClinicDetail from './HomePage/Clinic/ClinicDetail';
+import Chatbot from './HomePage/Chatbot';
+import Register from './Auth/Register';
+import Appointment from './HomePage/Session/Appointment';
+import Profile from './HomePage/Session/Profile';
 
 class App extends Component {
 
@@ -58,6 +62,7 @@ class App extends Component {
                             <Switch>
                                 <Route path={path.HOME} exact component={(Home)} />
                                 <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
+                                <Route path={path.REGISTER} component={userIsNotAuthenticated(Register)} />
                                 <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
                                 <Route path={path.DOCTOR} component={userIsAuthenticated(Doctor)} />
                                 <Route path={path.HOMEPAGE} component={HomePage} />
@@ -65,6 +70,10 @@ class App extends Component {
                                 <Route path={`${path.SPECIALTY_DETAIL}/:id`} component={SpecialtyDetail} />
                                 <Route path={`${path.CLINIC_DETAIL}/:id`} component={ClinicDetail} />
                                 <Route path={path.VERIFY_EMAIL_BOOKING} component={VerifyEmail} />
+                                <Route path={path.APPOIINTMENT} component={Appointment} />
+                                <Route path={path.CHATBOT} component={Chatbot} />
+                                <Route path={path.PROFILE} component={Profile} />
+
 
                             </Switch>
                             </CustomScrollbars>
