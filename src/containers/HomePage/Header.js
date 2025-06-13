@@ -53,7 +53,9 @@ class Header extends Component {
               <i className="fa-solid fa-magnifying-glass search-icon"></i>
               <FormattedMessage id="header.search">
                 {(placeholder) => (
-                  <input className="input-search" placeholder={placeholder} />
+                  <input className="input-search" placeholder={placeholder}
+                    onClick={() => this.props.history.push(path.SEARCH)}
+                  />
                 )}
               </FormattedMessage>
             </div>

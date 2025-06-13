@@ -22,7 +22,7 @@ const Chatbot = () => {
   }, [messages]);
 
   const sendMessage = async (text) => {
-    if (!text.trim()) return; // Ngăn gửi tin nhắn rỗng
+    if (!text.trim()) return;
 
     const userMessage = { text, sender: 'user' };
     setMessages((prev) => [...prev, userMessage]);

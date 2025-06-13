@@ -13,6 +13,7 @@ export const path = {
   CHATBOT: "/chatbot",
   APPOIINTMENT: "/appointment",
   PROFILE: "/profile",
+  SEARCH: "/search"
 };
 
 export const LANGUAGES = {

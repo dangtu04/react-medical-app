@@ -29,6 +29,7 @@ import Chatbot from './HomePage/Chatbot';
 import Register from './Auth/Register';
 import Appointment from './HomePage/Session/Appointment';
 import Profile from './HomePage/Session/Profile';
+import Search from './HomePage/Search';
 
 class App extends Component {
 
@@ -73,6 +74,7 @@ class App extends Component {
                                 <Route path={path.APPOIINTMENT} component={Appointment} />
                                 <Route path={path.CHATBOT} component={Chatbot} />
                                 <Route path={path.PROFILE} component={Profile} />
+                                <Route path={path.SEARCH} component={Search} />
 
 
                             </Switch>

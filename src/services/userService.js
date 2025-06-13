@@ -86,6 +86,12 @@ const getAppointmentHistory = (patientId) => {
   );
 };
 
+const searchDoctor = (keyWord) => {
+  return axios.get(
+    `/api/search-doctor?keyWord=${keyWord}`
+  );
+};
+
 export {
   userLogin,
   getAllUsers,
@@ -105,5 +111,6 @@ export {
   postVerifyBookingAppointment,
   getAllPatientForDoctor,
   postSendRemedy,
-  getAppointmentHistory
+  getAppointmentHistory,
+  searchDoctor
 };

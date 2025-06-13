@@ -24,6 +24,12 @@ const deleteClinic = (id) => {
   return axios.delete(`/api/delete-clinic?id=${id}`);
 };
 
+const searchClinic = (keyWord) => {
+  return axios.get(
+    `/api/search-clinic?keyWord=${keyWord}`
+  );
+};
+
 export {
   createClinic,
   getClinic,
@@ -31,4 +37,5 @@ export {
   getClinicById,
   updateClinic,
   deleteClinic,
+  searchClinic
 };

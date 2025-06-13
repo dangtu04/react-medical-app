@@ -24,6 +24,12 @@ const deleteSpecialty = (id) => {
   return axios.delete(`/api/delete-specialty?id=${id}`);
 };
 
+const searchSpecialty = (keyWord) => {
+  return axios.get(
+    `/api/search-specialty?keyWord=${keyWord}`
+  );
+};
+
 export {
   createSpecialty,
   getSpecialty,
@@ -31,4 +37,5 @@ export {
   getSpecialtyById,
   updateSpecialty,
   deleteSpecialty,
+  searchSpecialty
 };
