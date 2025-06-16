@@ -6,8 +6,7 @@ import localization from "moment/locale/vi";
 import { getDoctorSchedule } from "../../../services/userService";
 import BookingModal from "./Modal/BookingModal";
 import { connect } from "react-redux";
-
-// ...existing code...
+import { FormattedMessage } from "react-intl";
 class DoctorSchedule extends Component {
   constructor(props) {
     super(props);
@@ -81,16 +80,16 @@ class DoctorSchedule extends Component {
     }
   }
 
-handleOnClickScheduleTime = (item) => {
-  if (!this.props.isLoggedIn) {
-    alert("Vui lòng đăng nhập để đặt lịch!");
-    return;
-  }
-  this.setState({
-    isOpenModalBooking: true,
-    dataSchedule: item,
-  });
-};
+  handleOnClickScheduleTime = (item) => {
+    if (!this.props.isLoggedIn) {
+      alert("Vui lòng đăng nhập để đặt lịch!");
+      return;
+    }
+    this.setState({
+      isOpenModalBooking: true,
+      dataSchedule: item,
+    });
+  };
 
   closeBookingModal = () => {
     this.setState({
@@ -99,7 +98,8 @@ handleOnClickScheduleTime = (item) => {
   };
 
   render() {
-    const { arrDays, isOpenModalBooking, dataSchedule, doctorSchedule } = this.state;
+    const { arrDays, isOpenModalBooking, dataSchedule, doctorSchedule } =
+      this.state;
     const { language } = this.props;
 
     return (
@@ -120,7 +120,8 @@ handleOnClickScheduleTime = (item) => {
             <i className="fa-solid fa-angle-down"></i>
           </div>
           <h5>
-            <i className="fa-solid fa-calendar-days"></i> Lịch khám
+            <i className="fa-solid fa-calendar-days"></i>{" "}
+            <FormattedMessage id="doctor-schedule.appointment" />
           </h5>
           <div className="schedule-grid">
             {doctorSchedule && doctorSchedule.length > 0 ? (
@@ -143,15 +144,17 @@ handleOnClickScheduleTime = (item) => {
                 })}
               </>
             ) : (
-              <span>Chưa có lịch khám</span>
+              <span>
+                {" "}
+                <FormattedMessage id="doctor-schedule.no-appointment" />
+              </span>
             )}
           </div>
           <div className="note">
-            Chọn{" "}
             <span role="img" aria-label="book">
               📅
             </span>{" "}
-            và đặt (Phí đặt lịch 0đ)
+            <FormattedMessage id="doctor-schedule.free-booking" />
           </div>
         </div>
 
@@ -165,10 +168,7 @@ handleOnClickScheduleTime = (item) => {
   }
 }
 
-export default connect(
-  state => ({
-    language: state.app.language,
-    isLoggedIn: state.user.isLoggedIn, 
-  })
-)(DoctorSchedule);
-// ...end of file...
+export default connect((state) => ({
+  language: state.app.language,
+  isLoggedIn: state.user.isLoggedIn,
+}))(DoctorSchedule);

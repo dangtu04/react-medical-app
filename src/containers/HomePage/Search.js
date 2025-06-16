@@ -9,6 +9,7 @@ import SpecialtyCard from "./Card/SpecialtyCard";
 import { searchDoctor } from "../../services/userService";
 import { searchClinic } from "../../services/clinicService";
 import { searchSpecialty } from "../../services/specialtyService";
+import { FormattedMessage, injectIntl } from "react-intl";
 import Header from "./Header";
 class Search extends Component {
   constructor(props) {
@@ -115,7 +116,7 @@ class Search extends Component {
   };
 
   render() {
-    const { language } = this.props;
+    const { language, intl } = this.props;
     const { searchTerm, searchType, results, isLoading, hasSearched, error } =
       this.state;
 
@@ -126,9 +127,11 @@ class Search extends Component {
           {/* Header Search Section */}
           <div className="search-header">
             <div className="search-header-content">
-              <h1 className="search-title">Tìm kiếm dịch vụ y tế</h1>
+              <h1 className="search-title">
+                <FormattedMessage id="search.title" />
+              </h1>
               <p className="search-subtitle">
-                Tìm bác sĩ, bệnh viện, chuyên khoa phù hợp với bạn
+                <FormattedMessage id="search.sub-title" />
               </p>
             </div>
           </div>
@@ -139,14 +142,18 @@ class Search extends Component {
               <div className="search-box">
                 <div className="search-input-wrapper">
                   <i className="fas fa-search search-icon"></i>
-                  <input
-                    type="text"
-                    className="search-input"
-                    placeholder="Tìm bác sĩ, bệnh viện, chuyên khoa..."
-                    value={searchTerm}
-                    onChange={this.handleSearchChange}
-                    onKeyPress={this.handleKeyPress}
-                  />
+                  <FormattedMessage id="search.input">
+                    {(placeholder) => (
+                      <input
+                        type="text"
+                        className="search-input"
+                        placeholder={placeholder}
+                        value={searchTerm}
+                        onChange={this.handleSearchChange}
+                        onKeyPress={this.handleKeyPress}
+                      />
+                    )}
+                  </FormattedMessage>
                 </div>
 
                 <div className="search-filter">
@@ -155,9 +162,15 @@ class Search extends Component {
                     value={searchType}
                     onChange={this.handleSearchTypeChange}
                   >
-                    <option value="doctor">Bác sĩ</option>
-                    <option value="clinic">Phòng khám</option>
-                    <option value="specialty">Chuyên khoa</option>
+                    <option value="doctor">
+                      {intl.formatMessage({ id: "search.doctor" })}
+                    </option>
+                    <option value="clinic">
+                      {intl.formatMessage({ id: "search.clinic" })}
+                    </option>
+                    <option value="specialty">
+                      {intl.formatMessage({ id: "search.specialty" })}
+                    </option>
                   </select>
                 </div>
 
@@ -169,7 +182,7 @@ class Search extends Component {
                   {isLoading ? (
                     <i className="fas fa-spinner fa-spin"></i>
                   ) : (
-                    "Tìm kiếm"
+                    <FormattedMessage id="search.search" />
                   )}
                 </button>
               </div>
@@ -180,10 +193,13 @@ class Search extends Component {
           {hasSearched && (
             <div className="search-results">
               <div className="results-header">
-                <h3>Kết quả tìm kiếm</h3>
+                <h3>
+                  <FormattedMessage id="search.search-result" />
+                </h3>
                 {!isLoading && (
                   <span className="results-count">
-                    Tìm thấy {results.length} kết quả cho "{searchTerm}"
+                    <FormattedMessage id="search.found" /> {results.length}{" "}
+                    <FormattedMessage id="search.result-for" /> "{searchTerm}"
                   </span>
                 )}
               </div>
@@ -192,7 +208,9 @@ class Search extends Component {
                 <div className="loading-results">
                   <div className="loading-spinner">
                     <i className="fas fa-spinner fa-spin"></i>
-                    <p>Đang tìm kiếm...</p>
+                    <p>
+                      <FormattedMessage id="search.searching" />
+                    </p>
                   </div>
                 </div>
               ) : error ? (
@@ -201,7 +219,7 @@ class Search extends Component {
                     <i className="fas fa-exclamation-triangle"></i>
                     <p>{error}</p>
                     <button className="retry-btn" onClick={this.handleSearch}>
-                      Thử lại
+                      <FormattedMessage id="search.retry" />
                     </button>
                   </div>
                 </div>
@@ -212,8 +230,10 @@ class Search extends Component {
                   ) : (
                     <div className="no-results">
                       <i className="fas fa-search"></i>
-                      <h4>Không tìm thấy kết quả</h4>
-                      <p>Hãy thử tìm kiếm với từ khóa khác</p>
+                      <h4>
+                        {" "}
+                        <FormattedMessage id="search.no-result" />
+                      </h4>
                     </div>
                   )}
                 </div>
@@ -224,7 +244,7 @@ class Search extends Component {
           {/* Popular Searches */}
           {!hasSearched && (
             <div className="popular-searches">
-              <h3>Tìm kiếm phổ biến</h3>
+              {/* <h3>Tìm kiếm phổ biến</h3>
               <div className="popular-list">
                 <div className="popular-item">
                   <i className="fas fa-heart"></i>
@@ -254,7 +274,7 @@ class Search extends Component {
                     <p>Chăm sóc và điều trị răng miệng</p>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           )}
         </div>
@@ -269,4 +289,4 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search);
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Search));

@@ -4,7 +4,13 @@
     "at-the-hospital": "At the Hospital",
     "live-healthy": "Live Healthy",
     "search": "Search",
-    "appointment": "Appointment"
+    "appointment": "Appointment",
+    "login": "Login",
+    "logout": "Logout",
+    "profile": "Profile",
+    "handbook": "Handbook",
+    "assistant": "AI assistant"
+
     },
     "specialty": {
         "specialty": "Specialty",
@@ -13,9 +19,75 @@
      "clinic": {
         "clinic": "Clinic"
     },
-
-    "featured-doctor": "Featured Doctor",
-
+    "featured-doctor": "Outstanding Doctor",
+    "doctor-schedule": {
+        "appointment": "Appointment",
+        "no-appointment": "No appointment yet",
+        "free-booking": "Free appointment booking"
+    },
+    "extra-infor" : {
+        "address" :"Address",
+        "price": "Price",
+        "payment-method": "Payment method"
+    },
+    "booking-modal": {
+        "appointment-information": "Appointment information",
+        "price": "Price",
+        "first-name":"First Name",
+        "last-name":"Last Name",
+        "phone-number":"Phone Number",
+        "date-of-birth":"Date Of Birth",
+        "gender": "Gender",
+        "address": "Address",
+        "reason": "Reason",
+        "confirm": "Confirm",
+        "cancel": "Cancel"
+    },
+    "detail": "Detail",
+    "price": "Price",
+    "search": {
+        "title" :"Find medical services",
+        "sub-title": "Find the right doctor, hospital, specialist for you",
+        "doctor": "Doctor",
+        "clinic": "Clinic",
+        "specialty": "Specialty",
+        "search": "Search",
+        "input": "Find doctors, hospitals, specialists...",
+        "search-result": "Search results",
+        "searching": "Searching for...",
+        "found": "Found",
+        "result-for": "result for",
+        "retry": "Retry",
+        "no-result": "No results found"
+    },
+    "appointment": {
+        "history": "Medical history",
+        "no":"No",
+        "doctor":"Doctor",
+        "date": "Date",
+        "time": "Time",
+        "reason": "Reason",
+        "status": "Status",
+        "no-appointment": "No appointment"
+    },
+    "profile": {
+        "title": "Personal profile",
+        "sub-title": "Details about your account",
+        "personal-information": "Personal information",
+        "fullname": "Fullname",
+        "phone-number":"Phone Number",
+        "date-of-birth":"Date Of Birth",
+        "address": "Address",
+        "gender": "Gender",
+        "loading": "Loading..."
+    },
+    "chatbot": {
+        "title": "AI Medical Booking Assistant",
+        "send": "Send",
+        "processing": "Processing...",
+        "input": "Enter your question...",
+        "note": "* Information is for reference only, not a substitute for direct medical examination."
+    },
     "menu": {
         "admin": {
             "user": "User",

@@ -4,6 +4,7 @@ import { LANGUAGES } from "../../../utils/constant";
 import { getAppointmentHistory } from "../../../services/userService";
 import Header from "../Header";
 import "./Appointment.scss";
+import { FormattedMessage } from "react-intl";
 
 class Appointment extends Component {
   constructor(props) {
@@ -31,17 +32,19 @@ class Appointment extends Component {
       <>
         <Header />
         <div className="appointment-container">
-          <h2 className="title">Lịch sử khám bệnh</h2>
+          <h2 className="title">
+            <FormattedMessage id="appointment.history" />
+          </h2>
           <div className="table-wrapper">
             <table className="appointment-table">
               <thead>
                 <tr>
-                  <th>STT</th>
-                  <th>Bác sĩ</th>
-                  <th>Ngày khám</th>
-                  <th>Thời gian</th>
-                  <th>Lý do</th>
-                  <th>Trạng thái</th>
+                  <th> <FormattedMessage id="appointment.no" /></th>
+                  <th> <FormattedMessage id="appointment.doctor" /></th>
+                  <th> <FormattedMessage id="appointment.date" /></th>
+                  <th> <FormattedMessage id="appointment.time" /></th>
+                  <th> <FormattedMessage id="appointment.reason" /></th>
+                  <th> <FormattedMessage id="appointment.status" /></th>
                 </tr>
               </thead>
               <tbody>
@@ -49,8 +52,12 @@ class Appointment extends Component {
                   appointmentList.map((item, index) => {
                     const doctorName =
                       language === LANGUAGES.VI
-                        ? `${item.doctorData.lastName} ${item.doctorData.firstName.trim()}`
-                        : `${item.doctorData.firstName.trim()} ${item.doctorData.lastName}`;
+                        ? `${
+                            item.doctorData.lastName
+                          } ${item.doctorData.firstName.trim()}`
+                        : `${item.doctorData.firstName.trim()} ${
+                            item.doctorData.lastName
+                          }`;
 
                     const time =
                       language === LANGUAGES.VI
@@ -79,7 +86,7 @@ class Appointment extends Component {
                 ) : (
                   <tr>
                     <td colSpan="6" className="no-data">
-                      Không có lịch sử khám.
+                       <FormattedMessage id="appointment.no-appointment" />
                     </td>
                   </tr>
                 )}

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./ClinicCard.scss";
 import { withRouter } from "react-router";
 import { path } from "../../../utils/constant";
-
+import { FormattedMessage } from "react-intl";
 class ClinicCard extends Component {
   handleViewDetail = (clinicId) => {
     this.props.history.push(`${path.CLINIC_DETAIL}/${clinicId}`);
@@ -39,7 +39,7 @@ class ClinicCard extends Component {
             className="btn-secondary"
             onClick={() => this.handleViewDetail(clinic.id)}
           >
-            Xem chi tiết
+            <FormattedMessage id="detail" />
           </button>
         </div>
       </div>

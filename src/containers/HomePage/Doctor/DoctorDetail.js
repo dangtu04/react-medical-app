@@ -56,9 +56,9 @@ class DoctorDetail extends Component {
               <img src={imgBase64 || defaultAvt} alt="avatar" />
             </div>
             <div className="doctor-description">
-              <div className="favorite-badge">
+              {/* <div className="favorite-badge">
                 <i className="fa-solid fa-heart"></i> Yêu thích
-              </div>
+              </div> */}
               <h2>{language === LANGUAGES.VI ? nameVi : nameEn}</h2>
               <p>{description}</p>
               <p>

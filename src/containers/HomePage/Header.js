@@ -45,15 +45,20 @@ class Header extends Component {
               className="child-center-content "
               onClick={() => this.props.history.push(path.CHATBOT)}
             >
-              Trợ lý AI
+              <FormattedMessage id="header.assistant" />
             </div>
-            <div className="child-center-content ">Cẩm nang</div>
+            <div className="child-center-content ">
+              {" "}
+              <FormattedMessage id="header.handbook" />
+            </div>
 
             <div className="child-center-content">
               <i className="fa-solid fa-magnifying-glass search-icon"></i>
               <FormattedMessage id="header.search">
                 {(placeholder) => (
-                  <input className="input-search" placeholder={placeholder}
+                  <input
+                    className="input-search"
+                    placeholder={placeholder}
                     onClick={() => this.props.history.push(path.SEARCH)}
                   />
                 )}
@@ -62,7 +67,6 @@ class Header extends Component {
           </div>
           <div className="right-content">
             <div className="child-right-content">
-            
               <span onClick={() => this.changeLanguage(LANGUAGES.VI)}>
                 <img
                   src={VNFlag}
@@ -85,31 +89,29 @@ class Header extends Component {
                   }
                 />
               </span>
-                 <b
+              <b
                 style={{ cursor: "pointer", marginRight: "10px" }}
                 onClick={() => this.props.history.push(path.PROFILE)}
               >
-                Hồ sơ
+                <FormattedMessage id="header.profile" />
               </b>
             </div>
             <div className="child-right-content">
               <div>
-                <b
-                onClick={() => this.props.history.push(path.APPOIINTMENT)}
-                >
+                <b onClick={() => this.props.history.push(path.APPOIINTMENT)}>
                   <FormattedMessage id="header.appointment" />
                 </b>
                 {" | "}
                 {isLoggedIn ? (
                   <b style={{ cursor: "pointer" }} onClick={this.handleLogout}>
-                    Đăng Xuất
+                    <FormattedMessage id="header.logout" />
                   </b>
                 ) : (
                   <b
                     style={{ cursor: "pointer" }}
                     onClick={() => this.props.history.push(path.LOGIN)}
                   >
-                    Đăng Nhập
+                    <FormattedMessage id="header.login" />
                   </b>
                 )}
               </div>

@@ -7,6 +7,7 @@ import Header from "../Header";
 import { getAllUsers } from "../../../services/userService"; 
 import defaultAvt from "../../../assets/images/default-avatar.jpg";
 import CommonUtils from "../../../utils/CommonUtils"; 
+import { FormattedMessage } from "react-intl";
 
 class Profile extends Component { 
   constructor(props) { 
@@ -66,8 +67,8 @@ class Profile extends Component {
         <Header /> 
         <div className="profile-container"> 
           <div className="profile-header">
-            <h2>Hồ sơ cá nhân</h2>
-            <p className="profile-subtitle">Thông tin chi tiết về tài khoản của bạn</p>
+            <h2>              <FormattedMessage id="profile.title" /></h2>
+            <p className="profile-subtitle"><FormattedMessage id="profile.sub-title" /></p>
           </div>
 
           {user ? ( 
@@ -89,10 +90,10 @@ class Profile extends Component {
 
               <div className="profile-content">
                 <div className="info-section">
-                  <h4 className="section-title">Thông tin cá nhân</h4>
+                  <h4 className="section-title"><FormattedMessage id="profile.personal-information" /></h4>
                   <div className="info-grid">
                     <div className="info-item">
-                      <div className="info-label">Họ tên</div>
+                      <div className="info-label"><FormattedMessage id="profile.fullname" /></div>
                       <div className="info-value">
                         {user.firstName} {user.lastName}
                       </div>
@@ -104,28 +105,28 @@ class Profile extends Component {
                     </div>
                     
                     <div className="info-item">
-                      <div className="info-label">Số điện thoại</div>
+                      <div className="info-label"><FormattedMessage id="profile.phone-number" /></div>
                       <div className="info-value">
                         {user.phoneNumber || "Chưa cập nhật"}
                       </div>
                     </div>
                     
                     <div className="info-item">
-                      <div className="info-label">Ngày sinh</div>
+                      <div className="info-label"><FormattedMessage id="profile.date-of-birth" /></div>
                       <div className="info-value">
                         {user.dateOfBirth || "Chưa cập nhật"}
                       </div>
                     </div>
                     
                     <div className="info-item">
-                      <div className="info-label">Địa chỉ</div>
+                      <div className="info-label"><FormattedMessage id="profile.address" /></div>
                       <div className="info-value">
                         {user.address || "Chưa cập nhật"}
                       </div>
                     </div>
                     
                     <div className="info-item">
-                      <div className="info-label">Giới tính</div>
+                      <div className="info-label"><FormattedMessage id="profile.gender" /></div>
                       <div className="info-value">
                         {user.gender === 'M' ? 'Nam' : 
                          user.gender === 'F' ? 'Nữ' : 'Chưa cập nhật'}
@@ -138,7 +139,7 @@ class Profile extends Component {
           ) : ( 
             <div className="loading-container">
               <div className="loading-spinner"></div>
-              <p className="loading-text">Đang tải thông tin...</p>
+              <p className="loading-text"><FormattedMessage id="profile.loading" /></p>
             </div>
           )} 
         </div> 

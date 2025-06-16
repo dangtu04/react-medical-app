@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './SpecialtyCard.scss';
+import { withRouter } from 'react-router';
+import { path } from '../../../utils/constant';
 
 class SpecialtyCard extends Component {
    constructor(props) {
@@ -23,9 +25,8 @@ class SpecialtyCard extends Component {
       this.setState({ imageBase64 });
     }
   };
-  handleClick = () => {
-    console.log('Clicked specialty:', this.props.specialty.id);
-    // Thêm logic điều hướng nếu cần
+  handleClick = (specialtyId) => {
+   this.props.history.push(`${path.SPECIALTY_DETAIL}/${specialtyId}`)
   };
 
   render() {
@@ -33,7 +34,7 @@ class SpecialtyCard extends Component {
     const { imageBase64 } = this.state
 
     return (
-      <div className="specialty-card" onClick={this.handleClick}>
+      <div className="specialty-card" onClick={() => this.handleClick(specialty.id)}>
         <div className="specialty-image">
           <img src={imageBase64} alt={specialty.name} />
         </div>
@@ -43,4 +44,4 @@ class SpecialtyCard extends Component {
   }
 }
 
-export default SpecialtyCard;
+export default withRouter(SpecialtyCard);

@@ -5,6 +5,7 @@ import { LANGUAGES, path } from "../../../utils/constant";
 import "./ProfileDoctor.scss";
 import defaultavt from "../../../assets/images/default-avatar.jpg";
 import { withRouter } from "react-router";
+import { FormattedMessage } from "react-intl";
 class ProfileDoctor extends Component {
   constructor(props) {
     super(props);
@@ -66,16 +67,17 @@ class ProfileDoctor extends Component {
 
   formatAppointmentTime = (dataTime, language) => {
     if (!dataTime) return "";
-    const timeValue = language === LANGUAGES.VI
-      ? dataTime?.timeTypeData?.valueVi
-      : dataTime?.timeTypeData?.valueEn;
+    const timeValue =
+      language === LANGUAGES.VI
+        ? dataTime?.timeTypeData?.valueVi
+        : dataTime?.timeTypeData?.valueEn;
     const formattedDate = this.formatDate(dataTime?.date, language);
     return `${timeValue} - ${formattedDate}`;
   };
 
-    handleViewDoctorDetail = (doctorId) => {
-      this.props.history.push(`${path.DOCTOR_DETAIL}/${doctorId}`)
-    }
+  handleViewDoctorDetail = (doctorId) => {
+    this.props.history.push(`${path.DOCTOR_DETAIL}/${doctorId}`);
+  };
 
   render() {
     const { language, dataTime, isShowLinkDetail } = this.props;
@@ -118,7 +120,6 @@ class ProfileDoctor extends Component {
             className="doctor-image"
           />
           <div className="appointment-info">
-         
             <div className="doctor-name">
               {language === LANGUAGES.VI ? nameVi : nameEn}
             </div>
@@ -141,16 +142,19 @@ class ProfileDoctor extends Component {
               {doctorInfor?.addressClinic}
             </div>
           </div>
-            {isShowLinkDetail ? (
-          <div className="doctor-detail-link">
-            <p onClick={() => this.handleViewDoctorDetail(profileDoctor.id)}>
-              Xem chi tiết
-            </p>
-          </div>
-        ) : <div className="price-info">Giá khám {formattedPrice}</div>}
+          {isShowLinkDetail ? (
+            <div className="doctor-detail-link">
+              <p onClick={() => this.handleViewDoctorDetail(profileDoctor.id)}>
+                <FormattedMessage id="detail" />
+              </p>
+            </div>
+          ) : (
+            <div className="price-info">
+              {" "}
+              <FormattedMessage id="price" /> {formattedPrice}
+            </div>
+          )}
         </div>
-      
-        
       </>
     );
   }

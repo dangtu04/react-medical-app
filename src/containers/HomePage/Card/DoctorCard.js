@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { LANGUAGES, path } from "../../../utils/constant";
 import "./DoctorCard.scss";
 import { withRouter } from "react-router";
-
+import { FormattedMessage } from "react-intl";
 class DoctorCard extends Component {
   constructor(props) {
     super(props);
@@ -80,9 +80,9 @@ class DoctorCard extends Component {
         <div className="doctor-card-actions">
           <button
             className="btn-secondary"
-          onClick={() => this.handleViewDetail(doctor.id)}
+            onClick={() => this.handleViewDetail(doctor.id)}
           >
-            Xem chi tiết
+            <FormattedMessage id="detail" />
           </button>
         </div>
       </div>

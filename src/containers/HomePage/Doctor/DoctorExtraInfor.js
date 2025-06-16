@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { getDoctorInforExtra } from "../../../services/userService"; // Thêm dòng này
 import "./DoctorExtraInfor.scss";
 import { LANGUAGES } from "../../../utils/constant";
+import { FormattedMessage } from "react-intl";
 
 class DoctorExtraInfor extends Component {
   constructor(props) {
@@ -60,18 +61,29 @@ class DoctorExtraInfor extends Component {
     return (
       <div className="extra-infor">
         <p>
-          <strong>Địa chỉ khám:</strong> <br />
+          <strong>
+            {" "}
+            <FormattedMessage id="extra-infor.address" />:
+          </strong>{" "}
+          <br />
           <span className="clinic-name">{doctorExtraInfor?.nameClinic}</span>
           <br />
           {doctorExtraInfor?.addressClinic}
         </p>
 
         <div className="price">
-          <strong>Giá khám:</strong> <p>{formattedPrice}</p>
+          <strong>
+            {" "}
+            <FormattedMessage id="extra-infor.price" />:
+          </strong>{" "}
+          <p>{formattedPrice}</p>
         </div>
 
         <p>
-          <strong>Phương thức thanh toán:</strong>
+          <strong>
+            {" "}
+            <FormattedMessage id="extra-infor.payment-method" />:
+          </strong>
           <br />
           {language === LANGUAGES.VI
             ? doctorExtraInfor?.paymentData?.valueVi

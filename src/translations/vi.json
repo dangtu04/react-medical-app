@@ -4,7 +4,12 @@
         "at-the-hospital":"Tại Viện",
         "live-healthy":"Sống khoẻ",
         "search": "Tìm kiếm",
-        "appointment": "Lịch hẹn"
+        "appointment": "Lịch hẹn",
+        "login": "Đăng nhập",
+        "logout": "Đăng xuất",
+        "profile": "Hồ sơ",
+        "handbook": "Cẩm nang",
+        "assistant": "Trợ lý AI"
     },
     "specialty": {
         "specialty": "Chuyên khoa",
@@ -15,6 +20,77 @@
     },
 
     "featured-doctor": "Bác sĩ nổi bật",
+     "doctor-schedule": {
+        "appointment": "Lịch khám",
+        "no-appointment": "Chưa có lịch khám",
+        "free-booking": "Đặt lịch miễn phí"
+    },
+     "extra-infor" : {
+        "address" :"Địa chỉ khám",
+        "price": "Giá khám",
+        "payment-method": "Phương thức thanh toán"
+    },
+      "booking-modal": {
+        "appointment-information": "Thông tin đặt lịch khám bệnh",
+        "price": "Giá khám",
+        "first-name":"Tên",
+        "last-name":"Họ",
+        "phone-number":"Số điện thoại",
+        "date-of-birth":"Ngày sinh",
+        "gender": "Giới tính",
+        "address": "Địa chỉ",
+        "reason": "Lý do",
+        "confirm": "Xác nhận",
+        "cancel": "Huỷ"
+    },
+    "detail": "Xem chi tiết",
+    "price": "Giá khám",
+    "search": {
+        "title" :"Tìm kiếm dịch vụ y tế",
+        "sub-title": "Tìm bác sĩ, bệnh viện, chuyên khoa phù hợp với bạn",
+        "doctor": "Bác sĩ",
+        "clinic": "Phòng khám",
+        "specialty": "Chuyên khoa",
+        "search": "Tìm kiếm",
+        "input": "Tìm bác sĩ, phòng khám, chuyên khoa...",
+        "search-result": "Kết quả tìm kiếm",
+        "searching": "Đang tìm kiếmr...",
+        "found": "Tìm thấy",
+        "result-for": "kết quả cho",
+        "retry": "Thử lại",
+        "no-result": "Không tìm thấy kết quả"
+    },
+    "appointment": {
+        "history": "Lịch sử khám bệnh",
+        "no":"STT",
+        "doctor":"Bác sĩ",
+        "date": "Ngày khám",
+        "time": "Thời gian",
+        "reason": "Lý do",
+        "status": "Trạng thái",
+        "no-appointment": "Không có lịch khám"
+    },
+    
+    "profile": {
+        "title": "Hồ sơ cá nhân",
+        "sub-title": "Chi tiết về tài khoản của bạn",
+        "personal-information": "Thông tin cá nhân",
+        "fullname": "Họ và tên",
+        "phone-number": "Số điện thoại",
+        "date-of-birth": "Ngày sinh",
+        "address": "Địa chỉ",
+        "gender": "Giới tính",
+        "loading": "Đang tải..."
+    },
+
+    
+    "chatbot": {
+        "title": "Trợ lý AI Medical Booking",
+        "send": "Gửi",
+        "processing": "Đang xử lý...",
+        "input": "Nhập câu hỏi của bạn...",
+        "note": "* Thông tin chỉ mang tính tham khảo, không thay thế việc thăm khám y tế trực tiếp."
+    },
 
     "menu": {
         "admin": {

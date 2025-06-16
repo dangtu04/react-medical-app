@@ -10,6 +10,7 @@ import moment from "moment";
 import ProfileDoctor from "../ProfileDoctor";
 import { postBookingAppointment } from "../../../../services/userService";
 import { toast } from "react-toastify";
+import { FormattedMessage } from "react-intl";
 class BookingModal extends Component {
   constructor(props) {
     super(props);
@@ -79,7 +80,7 @@ class BookingModal extends Component {
 
   handleConfirmBooking = async () => {
     // let date = new Date(this.state.dateOfBirth).getTime();
-      let dob = new Date(this.state.dateOfBirth);
+    let dob = new Date(this.state.dateOfBirth);
     let formattedDate = dob.toLocaleDateString("vi-VN");
     let timeString = this.formatAppointmentTime(
       this.props.dataTime,
@@ -106,9 +107,10 @@ class BookingModal extends Component {
     if (res && res.errCode === 0) {
       toast.success("Booking appointment succeed!");
       this.props.closeBookingModal();
-    } else if(res && res.errCode == 2) {
-
-      toast.error("Bạn dã đặt lịch khám trong ngày này rồi, vui lòng chọn ngày khác!");
+    } else if (res && res.errCode == 2) {
+      toast.error(
+        "Bạn dã đặt lịch khám trong ngày này rồi, vui lòng chọn ngày khác!"
+      );
     }
   };
 
@@ -143,7 +145,7 @@ class BookingModal extends Component {
     let { selectedGender } = this.state;
     let { isOpenModal, closeBookingModal, dataTime, genders, language } =
       this.props;
-    console.log("check props: ", this.props)
+    console.log("check props: ", this.props);
     return (
       <Modal
         isOpen={isOpenModal}
@@ -153,7 +155,10 @@ class BookingModal extends Component {
       >
         <div className="bk-md-content">
           <div className="bk-md-header">
-            <span className="left">Thông tin đặt lịch khám bệnh</span>
+            <span className="left">
+              {" "}
+              <FormattedMessage id="booking-modal.appointment-information" />
+            </span>
             <span className="right" onClick={closeBookingModal}>
               <i className="fas fa-times"></i>
             </span>
@@ -168,8 +173,10 @@ class BookingModal extends Component {
             </div>
 
             <div className="row">
-                 <div className="col-6">
-                <label>Họ</label>
+              <div className="col-6">
+                <label>
+                  <FormattedMessage id="booking-modal.last-name" />
+                </label>
                 <input
                   className="form-control"
                   value={this.state.lastName}
@@ -179,7 +186,9 @@ class BookingModal extends Component {
                 />
               </div>
               <div className="col-6">
-                <label>Tên</label>
+                <label>
+                  <FormattedMessage id="booking-modal.first-name" />
+                </label>
                 <input
                   className="form-control"
                   value={this.state.firstName}
@@ -188,9 +197,9 @@ class BookingModal extends Component {
                   }
                 />
               </div>
-           
+
               <div className="col-6">
-                <label>Địa chỉ Email</label>
+                <label>Email</label>
                 <input
                   className="form-control"
                   value={this.state.email}
@@ -198,7 +207,9 @@ class BookingModal extends Component {
                 />
               </div>
               <div className="col-6">
-                <label>Số điện thoại</label>
+                <label>
+                  <FormattedMessage id="booking-modal.phone-number" />
+                </label>
                 <input
                   className="form-control"
                   value={this.state.phoneNumber}
@@ -208,7 +219,9 @@ class BookingModal extends Component {
                 />
               </div>
               <div className="col-6">
-                <label>Ngày sinh</label>
+                <label>
+                  <FormattedMessage id="booking-modal.date-of-birth" />
+                </label>
                 <DatePicker
                   className="form-control"
                   onChange={this.handleOnChangeDatePicker}
@@ -216,7 +229,9 @@ class BookingModal extends Component {
                 />
               </div>
               <div className="col-6">
-                <label>Giới tính</label>
+                <label>
+                  <FormattedMessage id="booking-modal.gender" />
+                </label>
                 <select
                   className="form-select"
                   id="gender"
@@ -239,7 +254,9 @@ class BookingModal extends Component {
               </div>
 
               <div className="col-12">
-                <label>Địa chỉ liên hệ</label>
+                <label>
+                  <FormattedMessage id="booking-modal.address" />
+                </label>
                 <input
                   className="form-control"
                   value={this.state.address}
@@ -249,7 +266,9 @@ class BookingModal extends Component {
                 />
               </div>
               <div className="col-12">
-                <label>Lý do khám</label>
+                <label>
+                  <FormattedMessage id="booking-modal.reason" />
+                </label>
                 <input
                   className="form-control"
                   value={this.state.reason}
@@ -266,10 +285,10 @@ class BookingModal extends Component {
               className="btn-booking-confirm"
               onClick={this.handleConfirmBooking}
             >
-              Xác nhận
+              <FormattedMessage id="booking-modal.confirm" />
             </button>
             <button className="btn-booking-cancel" onClick={closeBookingModal}>
-              Huỷ
+              <FormattedMessage id="booking-modal.cancel" />
             </button>
           </div>
         </div>

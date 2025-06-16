@@ -1,16 +1,17 @@
-import React, { useState, useEffect, useRef } from 'react';
-import './Chatbot.scss';
-import Header from './Header';
-import axios from '../../axios';
+import React, { useState, useEffect, useRef } from "react";
+import "./Chatbot.scss";
+import Header from "./Header";
+import axios from "../../axios";
+import { FormattedMessage } from "react-intl";
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([
     {
-      text: 'Xin chào! Tôi là trợ lý AI Medical Booking.Tôi có thể giúp bạn tư vấn về sức khỏe và gợi ý chuyên khoa phù hợp. Bạn có câu hỏi gì không?',
-      sender: 'bot',
+      text: "Xin chào! Tôi là trợ lý AI Medical Booking.Tôi có thể giúp bạn tư vấn về sức khỏe và gợi ý chuyên khoa phù hợp. Bạn có câu hỏi gì không?",
+      sender: "bot",
     },
   ]);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const chatBodyRef = useRef(null);
 
@@ -24,23 +25,23 @@ const Chatbot = () => {
   const sendMessage = async (text) => {
     if (!text.trim()) return;
 
-    const userMessage = { text, sender: 'user' };
+    const userMessage = { text, sender: "user" };
     setMessages((prev) => [...prev, userMessage]);
     setIsLoading(true);
 
     try {
-      const response = await axios.post('/api/chatbot', { message: text });
+      const response = await axios.post("/api/chatbot", { message: text });
       if (response.errCode === 0) {
-        const botMessage = { text: response.data.reply, sender: 'bot' };
+        const botMessage = { text: response.data.reply, sender: "bot" };
         setMessages((prev) => [...prev, botMessage]);
       } else {
-        const errorMessage = { text: response.errMessage, sender: 'bot' };
+        const errorMessage = { text: response.errMessage, sender: "bot" };
         setMessages((prev) => [...prev, errorMessage]);
       }
     } catch (error) {
       const errorMessage = {
-        text: 'Đã xảy ra lỗi. Vui lòng thử lại sau.',
-        sender: 'bot',
+        text: "Đã xảy ra lỗi. Vui lòng thử lại sau.",
+        sender: "bot",
       };
       setMessages((prev) => [...prev, errorMessage]);
     } finally {
@@ -50,11 +51,11 @@ const Chatbot = () => {
 
   const handleSend = () => {
     sendMessage(inputValue);
-    setInputValue('');
+    setInputValue("");
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       handleSend();
     }
   };
@@ -66,7 +67,9 @@ const Chatbot = () => {
         <div className="chatbot-header">
           <div className="chatbot-title">
             <div>
-              <h3>Trợ lý AI Medical Booking</h3>
+              <h3>
+                <FormattedMessage id="chatbot.title" />
+              </h3>
               {/* <span>Tư vấn sức khỏe và hỗ trợ đặt lịch khám</span> */}
             </div>
           </div>
@@ -80,38 +83,61 @@ const Chatbot = () => {
           ))}
           {isLoading && (
             <div className="chatbot-message bot">
-              <p>Đang xử lý...</p>
+              <p>
+                <FormattedMessage id="chatbot.processing" />
+              </p>
             </div>
           )}
         </div>
 
         <div className="chatbot-footer">
           <div className="suggestions">
-            <button onClick={() => sendMessage('Tôi bị đau đầu thường xuyên')} disabled={isLoading}>
+            <button
+              onClick={() => sendMessage("Tôi bị đau đầu thường xuyên")}
+              disabled={isLoading}
+            >
               Tôi bị đau đầu thường xuyên
             </button>
-            <button onClick={() => sendMessage('Làm sao để đặt lịch khám?')} disabled={isLoading}>
+            <button
+              onClick={() => sendMessage("Làm sao để đặt lịch khám?")}
+              disabled={isLoading}
+            >
               Làm sao để đặt lịch khám?
             </button>
-            <button onClick={() => sendMessage('Có chuyên khoa nào khám về tim mạch?')} disabled={isLoading}>
+            <button
+              onClick={() =>
+                sendMessage("Có chuyên khoa nào khám về tim mạch?")
+              }
+              disabled={isLoading}
+            >
               Có chuyên khoa nào khám về tim mạch?
             </button>
-           
           </div>
           <div className="input-area">
-            <input
-              type="text"
-              placeholder="Nhập câu hỏi về sức khỏe của bạn..."
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              onKeyPress={handleKeyPress}
-              disabled={isLoading}
-            />
-            <button className="send-btn" onClick={handleSend} disabled={!inputValue.trim() || isLoading}>
-              Gửi
+            <FormattedMessage id="chatbot.input">
+              {(placeholder) => (
+                <input
+                  type="text"
+                  placeholder={placeholder}
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyPress={handleKeyPress}
+                  disabled={isLoading}
+                />
+              )}
+            </FormattedMessage>
+
+            <button
+              className="send-btn"
+              onClick={handleSend}
+              disabled={!inputValue.trim() || isLoading}
+            >
+              <FormattedMessage id="chatbot.send" />
             </button>
           </div>
-          <p className="note">* Thông tin chỉ mang tính tham khảo, không thay thế cho việc khám bệnh trực tiếp</p>
+          <p className="note">
+            <FormattedMessage id="chatbot.note" />
+          </p>
         </div>
       </div>
     </>
